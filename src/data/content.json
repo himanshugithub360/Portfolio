@@ -8,17 +8,17 @@
     "role": "AI / ML Engineer",
     "tagline": [
       "AI / ML Engineer",
-      "Generative AI",
-      "Python"
+      "Full Stack Developer",
+      "Embedded"
     ],
     "degreeShort": "M.Tech CSE",
     "primaryStack": "Python · LLMs · RAG",
     "primaryLanguage": {
-      "name": "Python",
-      "with": "with C++, Java, JavaScript, C"
+      "name": "Java",
+      "with": "with C++, Python, JavaScript, React"
     },
-    "intro": "An M.Tech Computer Science student at NIT Silchar with expertise in Machine Learning, Deep Learning and Generative AI — building LLM-based and data-driven applications with RAG pipelines, NLP and model deployment. Seeking an AI/ML Engineer role.",
-    "location": "Silchar, Assam",
+    "intro": "M.Tech CSE student at NIT Silchar building LLM-powered applications — RAG pipelines, NLP and deep learning — from prototype to deployment. Currently an Embedded Linux intern at ABB, and looking for an AI/ML Engineer role.",
+    "location": "Mahadevapura, Bengaluru",
     "email": "himanshuramgariya@gmail.com",
     "links": {
       "linkedin": "https://www.linkedin.com/in/himanshukumar111/",
@@ -32,31 +32,31 @@
       "alt": "Portrait of Himanshu Kumar"
     },
     "interests": [
-      "Generative AI",
-      "LLMs & RAG",
-      "Computer Vision"
+      "Generative AI & RAG",
+      "Full-stack AI products",
+      "Embedded & edge AI"
     ]
   },
   "hero": {
-    "badge": "AI·ML",
+    "badge": "M.Tech CSE",
     "meta": [
       "2025 – Present",
-      "M.Tech CSE",
-      "3 Originals",
-      "2 Internships"
+      "NIT Silchar",
+      "{projects} Originals",
+      "{internships} Internships"
     ],
     "chips": [
       {
-        "text": "CGPA 7.94",
-        "sub": "M.Tech CSE"
+        "text": "RAG · LLMs · NLP",
+        "sub": "AI / ML"
       },
       {
-        "text": "Embedded Systems Intern",
+        "text": "Embedded Linux Intern",
         "sub": "ABB Bangalore"
       },
       {
-        "text": "Python · LLMs · RAG",
-        "sub": "Primary stack"
+        "text": "React · Flask · Node.js",
+        "sub": "Full stack"
       }
     ]
   },
@@ -65,22 +65,22 @@
       {
         "k": "Now",
         "v": "M.Tech CSE",
-        "s": "NIT Silchar · CGPA 7.94"
+        "s": "NIT Silchar · 2025 – 2027"
       },
       {
         "k": "Experience",
-        "v": "Embedded Systems (Linux) Intern, ABB",
+        "v": "Embedded Linux Intern, ABB",
         "s": "Aug 2026 – Present"
       },
       {
-        "k": "Primary language",
-        "v": "Python",
+        "k": "Builds with",
+        "v": "Python · React · RAG",
         "s": "with C++, Java, JavaScript, C"
       },
       {
-        "k": "Based in",
-        "v": "Silchar, Assam",
-        "s": "India"
+        "k": "Open to",
+        "v": "AI/ML · Full-Stack · Embedded",
+        "s": "Software engineering roles"
       }
     ]
   },
@@ -90,9 +90,9 @@
     "aboutTitle": "About Me",
     "journeyTitle": "My Journey",
     "journeyHint": "Every stage of the resume, told as a season — select one to see its episodes.",
-    "originalsKicker": "Originals · AI / ML",
+    "originalsKicker": "Originals · AI · Systems",
     "originalsTitle": "ORIGINALS",
-    "originalsBlurb": "Three productions from the resume — a chat-intelligence platform, a medical RAG assistant and an AI fitness tracker. Open any title for the full story.",
+    "originalsBlurb": "Five productions — an AI chat-intelligence platform, a medical RAG assistant, a Linux scheduler in C++, a raw-socket chat and a full-stack AI fitness app. Open any title for the full story.",
     "picksKicker": "Top 10 · from the resume",
     "picksTitle": "Himanshu's Top Picks",
     "skillsKicker": "Genres",
@@ -127,13 +127,25 @@
   "experience": [
     {
       "company": "ABB",
-      "role": "Embedded Systems (Linux) Intern",
+      "role": "Embedded Linux Intern",
       "place": "Bangalore",
       "period": "Aug 2026 – Present",
       "points": [
-        "Developed and debugged Linux-based applications for embedded systems using C/C++ and Python.",
-        "Analysed system boot, kernel, systemd, service, and runtime logs to identify embedded Linux issues.",
-        "Worked with Linux system components, process management, device interfaces, and system-level debugging."
+        "Work on ZEE600C, ABB's substation automation platform, developing and debugging its embedded Linux applications in C/C++ and Python.",
+        "Diagnose embedded Linux issues by analysing boot, kernel, systemd service, and runtime logs.",
+        "Work across Linux system components, including process management, device interfaces, and system-level debugging."
+      ]
+    },
+    {
+      "company": "The Sparks Foundation",
+      "role": "Data Science & Business Analytics Intern",
+      "place": "Remote (Singapore)",
+      "period": "Aug 2024 – Oct 2024",
+      "points": [
+        "Analysed large datasets with Python, Pandas and NumPy to extract business insights.",
+        "Built dashboards in Tableau and Power BI for data visualisation and business intelligence.",
+        "Applied business-analytics concepts to support data-driven decisions.",
+        "Presented complex findings clearly to non-technical stakeholders."
       ]
     },
     {
@@ -142,9 +154,9 @@
       "place": "Pune",
       "period": "Jun 2024 – Aug 2024",
       "points": [
-        "Gained hands-on experience with Open5GS, implementing 5G mobile core network functions.",
-        "Conducted 5G network simulations using UERANSIM to analyse network protocol behaviour.",
-        "Strengthened Linux/Unix skills for network deployment and system management."
+        "Deployed and configured Open5GS to implement 5G mobile core network functions.",
+        "Simulated 5G networks with UERANSIM to analyse protocol behaviour between user equipment and the core network.",
+        "Managed network deployments on Linux, strengthening system administration and shell scripting skills."
       ]
     }
   ],
@@ -153,26 +165,39 @@
       "id": "shadowtrace",
       "title": "ShadowTrace",
       "genre": "AI • NLP • LLM • RAG",
-      "logline": "AI-powered WhatsApp chats intelligence — a conversation analytics platform built on NLP, LLMs and a FAISS RAG pipeline.",
+      "logline": "What was said is only the surface. ShadowTrace reads a WhatsApp chat like a detective — patterns, people, moods and moments — then lets you ask it anything.",
       "stack": [
         "Python",
         "Streamlit",
         "NLP",
         "LLM",
         "RAG",
-        "FAISS"
+        "LangChain",
+        "Gemini",
+        "Pandas",
+        "FAISS",
+        "Plotly",
+        "Reportlab",
+        "vaderSentiment",
+        "Langdetect",
+        "Textstat",
+        "OpenAI"
       ],
       "build": [
-        "Built an AI-driven conversation analytics platform processing 1M+ messages using NLP and LLMs.",
-        "Implemented 6+ NLP modules for sentiment, emotion, topic, keyword, toxicity, and language analysis.",
-        "Developed a RAG pipeline with FAISS for semantic search, contextual retrieval, and LLM-based Q&A.",
-        "Integrated 5+ LLM features for summarization, recommendations, highlights, and conversational insights."
+        "Built a conversation-intelligence platform in Python (~10K lines) that processes 1M+ messages into interactive analytics with Streamlit and Plotly.",
+        "Designed a RAG pipeline with LangChain and FAISS for semantic search and grounded Q&A, with embeddings that fall back from Gemini to OpenRouter to a local model.",
+        "Engineered a multi-provider LLM router (Gemini, Groq, OpenRouter, Mistral) with per-provider cooldowns and truncation detection, keeping AI features available when a provider hits its quota.",
+        "Implemented 6+ NLP modules — VADER sentiment, emotion and intent detection, LDA/BERTopic topic modeling, YAKE/KeyBERT keywords, toxicity scoring and Hinglish language detection.",
+        "Answered factual questions (\"who talks the most?\") deterministically from computed analytics, skipping the LLM entirely for speed, cost and accuracy.",
+        "Optimised performance with lazy section loading and multi-layer caching of parsing, NLP results, RAG indexes and exports."
       ],
       "features": [
-        "Sentiment, emotion, topic, keyword, toxicity & language analysis",
-        "FAISS semantic search & contextual retrieval",
-        "LLM-based Q&A over your chats",
-        "Summaries, recommendations & highlights"
+        "Ask the chat anything — RAG Q&A over your messages with conversational memory",
+        "Grounded AI: stats are computed in Python first, so the LLM narrates facts, never invents them",
+        "4-provider LLM fallback (Gemini → Groq → OpenRouter → Mistral) with automatic cooldowns",
+        "Semantic search that finds messages by meaning, not keywords (FAISS vector index)",
+        "Sentiment, emotion, topics and toxicity — tuned for Hinglish and informal text",
+        "AI summaries, highlights, people analysis and a conversation quality score"
       ],
       "metrics": [
         {
@@ -186,6 +211,10 @@
         {
           "value": "5+",
           "label": "LLM features"
+        },
+        {
+          "value": "4",
+          "label": "LLM providers with fallback"
         }
       ],
       "live": "https://shadowtrace.streamlit.app/",
@@ -195,13 +224,15 @@
         "to": "#0b0710",
         "accent": "#ff3d5a"
       },
-      "motif": "shield"
+      "motif": "shield",
+      "year": "2026",
+      "github": "https://github.com/himanshugithub360/SHADOWTRACE"
     },
     {
       "id": "medirag",
       "title": "MediRAG",
       "genre": "GenAI • RAG • Healthcare",
-      "logline": "An AI-powered medical assistant — a RAG-based medical QA system built with LangChain and Mistral AI.",
+      "logline": "Meet Dr. Insight — a medical assistant that answers only from trusted medical documents, admits when it doesn't know, and always points you to a real doctor",
       "stack": [
         "Python",
         "Flask",
@@ -211,29 +242,31 @@
         "Pinecone"
       ],
       "build": [
-        "Built a RAG-based medical QA system using LangChain and Mistral AI.",
-        "Processed medical documents using PDF extraction, text chunking, and HuggingFace embeddings.",
-        "Implemented Pinecone semantic search to retrieve relevant medical context for LLM-generated responses.",
-        "Developed a Flask-based conversational web application with an interactive chat interface."
+        "Built a RAG-based medical QA system with LangChain retrieval chains, Mistral Large and a Pinecone serverless vector index",
+        "Built the ingestion pipeline: PDF extraction with PyPDF, recursive text chunking (300 characters, 50 overlap) and HuggingFace all-MiniLM-L6-v2 embeddings.",
+        "Tuned retrieval and generation for safety: top-5 cosine similarity search, low temperature (0.2) and a system prompt that forbids fabricated facts and always recommends a doctor.",
+        "Developed a Flask chat app with session-based conversation memory and a responsive chat UI with typing indicators.",
+        "Short-circuited greetings with instant replies, cutting unnecessary LLM calls."
       ],
       "features": [
-        "PDF extraction & text chunking",
-        "HuggingFace embeddings",
-        "Pinecone semantic search",
-        "Interactive Flask chat interface"
+        "Answers grounded in medical PDFs through retrieval-augmented generation",
+        "Says “I don't know” instead of guessing, and recommends a real doctor",
+        "Semantic search over a Pinecone vector index (cosine, 384-dim MiniLM embeddings)",
+        "Remembers the conversation, so follow-up questions just work",
+        "Empathetic “Dr. Insight” persona that acknowledges feelings before facts"
       ],
       "metrics": [
         {
-          "value": "RAG",
-          "label": "retrieval-augmented generation"
+          "value": "Top-5",
+          "label": "passages retrieved per answer"
         },
         {
-          "value": "Mistral",
-          "label": "LLM via LangChain"
+          "value": "384-dim",
+          "label": "MiniLM embeddings"
         },
         {
-          "value": "Pinecone",
-          "label": "vector search"
+          "value": "0",
+          "label": "answers without a source"
         }
       ],
       "github": "https://github.com/himanshugithub360/MediRAG",
@@ -243,7 +276,109 @@
         "to": "#05080d",
         "accent": "#4cc9ff"
       },
-      "motif": "tenants"
+      "motif": "tenants",
+      "year": "2025"
+    },
+    {
+      "id": "cfs-scheduler",
+      "title": "CFS Scheduler",
+      "genre": "Systems • C++ • Linux Kernel",
+      "logline": "How does Linux decide which process runs next? A C++ simulation of the kernel's Completely Fair Scheduler — vruntime, weights and a red-hot runqueue — with every scheduling decision plotted on a timeline.",
+      "stack": [
+        "C++",
+        "CMake",
+        "STL",
+        "json",
+        "Python",
+        "Matplotlib"
+      ],
+      "build": [
+        "Implemented a simulation of the Linux Completely Fair Scheduler in C++, with weight-based vruntime accounting matching the kernel's NICE_0_LOAD of 1024.",
+        "Modelled the runqueue as a min-heap priority queue keyed on vruntime, scheduling the least-served task first.",
+        "Simulated CPU-bound and I/O-bound workloads with distinct time-slice and I/O-wait behaviour, measured with std::chrono.",
+        "Logged every time slice to CSV and built a Python/Matplotlib Gantt chart to visualise fairness and priority effects.",
+        "Structured the project as modular services (process loading, queue, execution, scheduler) built with CMake."
+      ],
+      "features": [
+        "Linux-style weights: weight = NICE_0_LOAD (1024) / (priority + 1)",
+        "Virtual runtime accounting, so higher-priority tasks age more slowly",
+        "Runqueue as a min-heap ordered by vruntime, always picking the fairest task next",
+        "Separate CPU-bound (1 ms slice) and I/O-bound (10 ms wait) workload models",
+        "Processes loaded from JSON, so new workloads need no recompiling",
+        "Gantt-style timeline of every time slice, plotted with Matplotlib"
+      ],
+      "metrics": [
+        {
+          "value": "1024",
+          "label": "NICE_0_LOAD weight base"
+        },
+        {
+          "value": "1 ms",
+          "label": "CPU time slice"
+        },
+        {
+          "value": "O(log n)",
+          "label": "pick-next with a min-heap"
+        },
+        {
+          "value": "2",
+          "label": "workload types modelled"
+        }
+      ],
+      "palette": {
+        "from": "#03150f",
+        "via": "#0d5a40",
+        "to": "#050a08",
+        "accent": "#46e3a8"
+      },
+      "motif": "tenants",
+      "year": "2025",
+      "github": "https://github.com/himanshugithub360/Task_Scheduler"
+    },
+    {
+      "id": "socketchat",
+      "title": "SocketChat",
+      "genre": "Systems • C++ • Networking",
+      "logline": "A two-way chat built on raw TCP sockets in C++ — no frameworks, just Winsock and the network stack: bind, listen, accept, connect and a message loop.",
+      "stack": [
+        "C++",
+        "Winsock",
+        "TCP / IP"
+      ],
+      "build": [
+        "Built a client–server chat in C++ on Winsock 2 TCP sockets, covering the full socket lifecycle: socket, bind, listen, accept, connect, send/recv and close.",
+        "Implemented a turn-based message loop between server and client over port 8080, with a clean exit handshake.",
+        "Documented the protocol, MinGW and MSVC build steps, current limitations and a roadmap toward multi-client, full-duplex chat."
+      ],
+      "features": [
+        "Raw TCP sockets with the Windows Sockets API — no networking libraries",
+        "Server listens on port 8080 on every interface; the client connects and chats",
+        "Turn-based two-way messaging from the console",
+        "Clean shutdown: the client sends “exit” and both sides release their sockets"
+      ],
+      "metrics": [
+        {
+          "value": "8080",
+          "label": "TCP port"
+        },
+        {
+          "value": "0",
+          "label": "external libraries"
+        },
+        {
+          "value": "~100",
+          "label": "lines of C++"
+        }
+      ],
+      "palette": {
+        "from": "#04121f",
+        "via": "#0f4c6e",
+        "to": "#05080d",
+        "accent": "#4cc9ff"
+      },
+      "motif": "flow",
+      "year": "2024",
+      "github": "https://github.com/himanshugithub360/Client_Server_Chat"
     },
     {
       "id": "fitness-tracker",
@@ -290,10 +425,17 @@
   ],
   "achievements": [
     {
+      "id": "ach-mw4wra5w",
+      "title": "GATE 2025 Qualified",
+      "org": "GATE — Computer Science & IT",
+      "detail": "Qualified GATE 2025 in Computer Science & IT with a score of 503, earning admission to an M.Tech at NIT Silchar.",
+      "laurel": "National Exam"
+    },
+    {
       "id": "abb",
       "title": "Embedded Linux Intern",
       "org": "ABB Bangalore",
-      "detail": "Embedded Systems (Linux) internship — C/C++ and Python applications, kernel and systemd log analysis.",
+      "detail": "Embedded Linux internship — C/C++ and Python applications, kernel and systemd log analysis.",
       "laurel": "Industry"
     },
     {
@@ -304,6 +446,13 @@
       "laurel": "Competitive Coding"
     },
     {
+      "id": "prefect",
+      "title": "Assistant Prefect",
+      "org": "Patkai Men's Hostel",
+      "detail": "Served as Assistant Prefect of Patkai Men's Hostel.",
+      "laurel": "Leadership"
+    },
+    {
       "id": "nss",
       "title": "Department Representative",
       "org": "National Service Scheme (NSS)",
@@ -311,11 +460,11 @@
       "laurel": "Leadership"
     },
     {
-      "id": "prefect",
-      "title": "Assistant Prefect",
-      "org": "Patkai Men's Hostel",
-      "detail": "Served as Assistant Prefect of Patkai Men's Hostel.",
-      "laurel": "Leadership"
+      "id": "ach-mw4xcmj8",
+      "title": "Marketing Intern",
+      "org": "Muskurahat Foundation (NGO)",
+      "detail": "Ran social media and campaign content for a non-profit, tracking performance with Google Analytics.",
+      "laurel": "Social Impact"
     }
   ],
   "certifications": [],
@@ -323,28 +472,45 @@
     {
       "id": "languages",
       "title": "Languages",
-      "subtitle": "Python is the primary language",
+      "subtitle": "JAVA is the primary language",
       "skills": [
         {
-          "name": "Python",
-          "mono": "Py",
+          "name": "Java",
+          "mono": "Jv",
           "note": "Primary"
         },
         {
-          "name": "C++",
-          "mono": "C+"
+          "name": "Python",
+          "mono": "Py",
+          "note": ""
         },
         {
-          "name": "Java",
-          "mono": "Jv"
+          "name": "React",
+          "mono": "Rs"
         },
         {
           "name": "JavaScript",
           "mono": "Js"
         },
         {
+          "name": "C++",
+          "mono": "C++"
+        },
+        {
           "name": "C",
           "mono": "C"
+        },
+        {
+          "name": "PHP",
+          "mono": "Ph"
+        },
+        {
+          "name": "SQL",
+          "mono": "SL"
+        },
+        {
+          "name": "MATLAB",
+          "mono": "MT"
         }
       ]
     },
@@ -355,15 +521,15 @@
       "skills": [
         {
           "name": "Machine Learning",
-          "mono": "Ml"
+          "mono": "ML"
         },
         {
           "name": "Deep Learning",
-          "mono": "Dl"
+          "mono": "DL"
         },
         {
           "name": "NLP",
-          "mono": "Nl"
+          "mono": "NL"
         },
         {
           "name": "LLMs",
@@ -371,11 +537,11 @@
         },
         {
           "name": "RAG",
-          "mono": "Rg"
+          "mono": "RG"
         },
         {
           "name": "Computer Vision",
-          "mono": "Cv"
+          "mono": "CV"
         }
       ]
     },
@@ -385,12 +551,32 @@
       "subtitle": "Model APIs",
       "skills": [
         {
+          "name": "AI Agents",
+          "mono": "AI"
+        },
+        {
+          "name": "LangChain",
+          "mono": "LC"
+        },
+        {
+          "name": "Hugging Face Transformers",
+          "mono": "Hf"
+        },
+        {
           "name": "OpenAI API",
           "mono": "Oa"
         },
         {
+          "name": "Mistral AI",
+          "mono": "MA"
+        },
+        {
           "name": "Gemini API",
           "mono": "Gm"
+        },
+        {
+          "name": "Ollama",
+          "mono": "OL"
         }
       ]
     },
@@ -528,6 +714,53 @@
           "mono": "Os"
         }
       ]
+    },
+    {
+      "id": "cat-mw4wa9ky",
+      "title": "System",
+      "subtitle": "Embedded",
+      "skills": [
+        {
+          "name": "Embedded Linux",
+          "mono": "EL"
+        },
+        {
+          "name": "systemd",
+          "mono": "sd"
+        },
+        {
+          "name": "Linux Kernel Logs",
+          "mono": "KL"
+        },
+        {
+          "name": "Process Management",
+          "mono": "PM"
+        }
+      ]
+    },
+    {
+      "id": "cat-mw4xdug8",
+      "title": "Data & Analytics",
+      "subtitle": "From data to decisions",
+      "skills": [
+        {
+          "name": "Pandas",
+          "mono": "P"
+        },
+        {
+          "name": "NumPy",
+          "mono": "NP",
+          "note": ""
+        },
+        {
+          "name": "Tableau",
+          "mono": "TB"
+        },
+        {
+          "name": "Power BI",
+          "mono": "PI"
+        }
+      ]
     }
   ],
   "skillEvidence": {
@@ -537,10 +770,12 @@
       "ABB internship"
     ],
     "C++": [
-      "ABB internship"
+      "ABB internship",
+      "CFS Scheduler",
+      "SocketChat"
     ],
     "C": [
-      "ABB internship"
+      "SocketChat"
     ],
     "NLP": [
       "ShadowTrace"
@@ -582,13 +817,47 @@
     ],
     "Linux / Unix": [
       "ABB internship",
-      "C-DAC Open5G internship"
+      "C-DAC Open5G internship",
+      "CFS Scheduler"
     ],
     "DSA": [
       "200+ problems solved"
     ],
     "Operating Systems": [
+      "ABB internship",
+      "CFS Scheduler"
+    ],
+    "Pandas": [
+      "Sparks Foundation internship",
+      "ShadowTrace"
+    ],
+    "Tableau": [
+      "Sparks Foundation internship"
+    ],
+    "Power BI": [
+      "Sparks Foundation internship"
+    ],
+    "NumPy": [
+      "Sparks Foundation internship"
+    ],
+    "React": [
+      "AI Fitness Tracker"
+    ],
+    "Embedded Linux": [
       "ABB internship"
+    ],
+    "systemd": [
+      "ABB internship"
+    ],
+    "Linux Kernel Logs": [
+      "ABB internship"
+    ],
+    "Process Management": [
+      "ABB internship",
+      "CFS Scheduler"
+    ],
+    "Mistral AI": [
+      "MediRAG"
     ]
   },
   "seasons": [
@@ -601,152 +870,210 @@
         {
           "code": "S01 E01",
           "title": "The Foundation",
-          "description": "Bachelor of Technology in Computer Science and Engineering at Tezpur University — CGPA 8.01.",
-          "tags": [
-            "B.Tech",
-            "CSE",
-            "CGPA 8.01"
-          ],
           "runtime": "Oct 2021 – May 2025",
+          "motif": "tenants",
           "palette": {
             "from": "#1c1003",
             "via": "#6b3c06",
             "to": "#0a0806",
             "accent": "#ffb547"
-          }
+          },
+          "tags": [
+            "B.Tech",
+            "CSE",
+            "CGPA 8.01"
+          ],
+          "description": "Bachelor of Technology in Computer Science and Engineering at Tezpur University — CGPA 8.01."
         },
         {
           "code": "S01 E02",
           "title": "The Leader",
-          "description": "Department Representative for the National Service Scheme and Assistant Prefect of Patkai Men's Hostel.",
-          "tags": [
-            "NSS",
-            "Leadership"
-          ],
           "runtime": "Campus life",
+          "motif": "network",
           "palette": {
             "from": "#24060b",
             "via": "#6e0d1d",
             "to": "#09070a",
             "accent": "#ff3d5a"
-          }
+          },
+          "tags": [
+            "NSS",
+            "Leadership"
+          ],
+          "description": "Department Representative for the National Service Scheme and Assistant Prefect of Patkai Men's Hostel."
         },
         {
           "code": "S01 E03",
           "title": "The Problem Solver",
-          "description": "Data Structures & Algorithms practice — 200+ problems solved on LeetCode, GFG and Coding Ninjas.",
+          "runtime": "200+ problems",
+          "motif": "terminal",
+          "palette": {
+            "from": "#03150f",
+            "via": "#0d5a40",
+            "to": "#050a08",
+            "accent": "#46e3a8"
+          },
           "tags": [
             "DSA",
             "LeetCode",
             "GFG",
             "Coding Ninjas"
           ],
-          "runtime": "200+ problems",
-          "palette": {
-            "from": "#03150f",
-            "via": "#0d5a40",
-            "to": "#050a08",
-            "accent": "#46e3a8"
-          }
+          "description": "Data Structures & Algorithms practice — 200+ problems solved on LeetCode, GFG and Coding Ninjas."
         }
       ]
     },
     {
       "number": 2,
-      "title": "Into the Network",
+      "title": "The Internship Summer",
       "period": "2024",
-      "synopsis": "A summer as an Open5G Intern at C-DAC Pune, working on the 5G mobile core.",
+      "synopsis": "Three internships and a first systems build — NGO marketing, 5G core networks at C-DAC, data science at The Sparks Foundation, and a chat app on raw TCP sockets.",
       "episodes": [
         {
           "code": "S02 E01",
-          "title": "The Core",
-          "description": "Hands-on experience with Open5GS, implementing 5G mobile core network functions.",
+          "title": "The Storyteller",
+          "runtime": "May – Jun 2024",
+          "motif": "chart",
+          "palette": {
+            "from": "#1c1003",
+            "via": "#6b3c06",
+            "to": "#0a0806",
+            "accent": "#ffb547"
+          },
           "tags": [
-            "Open5GS",
-            "5G"
+            "Marketing",
+            "Google Analytics",
+            "Canva"
           ],
+          "description": "Marketing intern at Muskurahat Foundation, a Mumbai NGO — social media, campaigns and content.",
+          "details": [
+            "Managed and created content for social media platforms, increasing engagement and reach.",
+            "Wrote persuasive campaign content, blog posts, email campaigns and promotional material.",
+            "Monitored and optimised campaign performance with Google Analytics.",
+            "Designed graphics and content with Canva and Adobe Creative Suite."
+          ]
+        },
+        {
+          "code": "S02 E02",
+          "title": "The Core",
           "runtime": "Jun – Aug 2024",
+          "motif": "signal",
           "palette": {
             "from": "#04121f",
             "via": "#0f4c6e",
             "to": "#05080d",
             "accent": "#4cc9ff"
-          }
+          },
+          "tags": [
+            "Open5GS",
+            "UERANSIM",
+            "Linux"
+          ],
+          "experience": "C-DAC",
+          "description": "Open5G intern at C-DAC Pune — deploying a 5G mobile core and simulating the network end to end."
         },
         {
-          "code": "S02 E02",
-          "title": "The Simulation",
-          "description": "Ran 5G network simulations with UERANSIM to analyse network protocol behaviour, sharpening Linux/Unix skills.",
+          "code": "S02 E03",
+          "title": "The Data Detective",
+          "runtime": "Aug – Oct 2024",
+          "motif": "chart",
+          "palette": {
+            "from": "#03150f",
+            "via": "#0d5a40",
+            "to": "#050a08",
+            "accent": "#46e3a8"
+          },
           "tags": [
-            "UERANSIM",
-            "Linux / Unix"
+            "Python",
+            "Pandas",
+            "Power BI"
           ],
-          "runtime": "C-DAC Pune",
+          "experience": "The Sparks Foundation",
+          "description": "Data Science & Business Analytics intern at The Sparks Foundation — Python, Pandas and Tableau/Power BI dashboards."
+        },
+        {
+          "code": "S02 E04",
+          "title": "The Network Builder",
+          "runtime": "SocketChat",
+          "motif": "network",
           "palette": {
             "from": "#120822",
             "via": "#3d1a6e",
             "to": "#07060c",
             "accent": "#b98bff"
-          }
+          },
+          "tags": [
+            "C++",
+            "TCP",
+            "Sockets"
+          ],
+          "project": "socketchat",
+          "description": "SocketChat — a two-way chat over raw TCP sockets in C++, built from bind, listen and accept up."
         }
       ]
     },
     {
       "number": 3,
       "title": "Building with AI",
-      "period": "The Originals",
-      "synopsis": "Three Originals — a chat-intelligence platform, a medical RAG assistant and an AI fitness tracker.",
+      "period": "The AI Originals",
+      "synopsis": "Three AI Originals — a chat-intelligence platform, a medical RAG assistant and an AI fitness tracker.",
       "episodes": [
         {
           "code": "S03 E01",
           "title": "The Analyst",
-          "description": "ShadowTrace — 1M+ messages through 6+ NLP modules and a FAISS-powered RAG pipeline.",
-          "tags": [
-            "NLP",
-            "LLM",
-            "FAISS"
-          ],
           "runtime": "ShadowTrace",
+          "motif": "neural",
           "palette": {
             "from": "#24060b",
             "via": "#6e0d1d",
             "to": "#09070a",
             "accent": "#ff3d5a"
-          }
+          },
+          "tags": [
+            "NLP",
+            "LLM",
+            "FAISS"
+          ],
+          "project": "shadowtrace",
+          "description": "ShadowTrace — 1M+ messages through 6+ NLP modules, a FAISS-powered RAG pipeline and a 4-provider LLM router."
         },
         {
           "code": "S03 E02",
           "title": "The Assistant",
-          "description": "MediRAG — a medical QA system with LangChain, Mistral AI and Pinecone semantic search.",
-          "tags": [
-            "LangChain",
-            "Mistral AI",
-            "Pinecone"
-          ],
           "runtime": "MediRAG",
+          "motif": "chat",
           "palette": {
             "from": "#04121f",
             "via": "#0f4c6e",
             "to": "#05080d",
             "accent": "#4cc9ff"
-          }
+          },
+          "tags": [
+            "LangChain",
+            "Mistral AI",
+            "Pinecone"
+          ],
+          "project": "medirag",
+          "description": "MediRAG — a medical QA system that answers only from trusted documents, with LangChain, Mistral AI and Pinecone."
         },
         {
           "code": "S03 E03",
           "title": "The Builder",
-          "description": "AI Fitness Tracker — React + Strapi with Gemini-powered food recognition at ~75–85% accuracy.",
-          "tags": [
-            "React",
-            "TypeScript",
-            "Gemini API"
-          ],
           "runtime": "Fitness Tracker",
+          "motif": "flow",
           "palette": {
             "from": "#1c1003",
             "via": "#6b3c06",
             "to": "#0a0806",
             "accent": "#ffb547"
-          }
+          },
+          "tags": [
+            "React",
+            "TypeScript",
+            "Gemini API"
+          ],
+          "project": "fitness-tracker",
+          "description": "AI Fitness Tracker — React + Strapi with Gemini-powered food recognition at ~75–85% accuracy."
         }
       ]
     },
@@ -754,41 +1081,81 @@
       "number": 4,
       "title": "Master Class",
       "period": "2025 – Present",
-      "synopsis": "M.Tech in Computer Science and Engineering at NIT Silchar, plus an embedded Linux internship at ABB.",
+      "synopsis": "Cleared GATE, joined the M.Tech at NIT Silchar, went deep on Linux internals — and landed an embedded Linux internship at ABB.",
       "episodes": [
         {
           "code": "S04 E01",
-          "title": "The Postgrad",
-          "description": "Master of Technology in Computer Science and Engineering at NIT Silchar — CGPA 7.94.",
+          "title": "The Qualifier",
+          "runtime": "2025",
+          "motif": "shield",
+          "palette": {
+            "from": "#24060b",
+            "via": "#6e0d1d",
+            "to": "#09070a",
+            "accent": "#ff3d5a"
+          },
           "tags": [
-            "M.Tech",
-            "CSE",
-            "CGPA 7.94"
+            "GATE 2025",
+            "CS & IT"
           ],
+          "description": "Qualified GATE 2025 in Computer Science & IT with a score of 503 — the ticket to NIT Silchar."
+        },
+        {
+          "code": "S04 E02",
+          "title": "The Postgrad",
           "runtime": "Aug 2025 – May 2027",
+          "motif": "tenants",
           "palette": {
             "from": "#120822",
             "via": "#3d1a6e",
             "to": "#07060c",
             "accent": "#b98bff"
-          }
+          },
+          "tags": [
+            "M.Tech",
+            "CSE",
+            "CGPA 7.94"
+          ],
+          "description": "Master of Technology in Computer Science and Engineering at NIT Silchar — CGPA 7.94."
         },
         {
-          "code": "S04 E02",
-          "title": "The Engineer",
-          "description": "Embedded Systems (Linux) Intern at ABB Bangalore — C/C++ and Python apps, boot, kernel and systemd log analysis.",
-          "tags": [
-            "Embedded Linux",
-            "C/C++",
-            "Python"
-          ],
-          "runtime": "Aug 2026 – Present",
+          "code": "S04 E03",
+          "title": "The Kernel Hacker",
+          "runtime": "CFS Scheduler",
+          "motif": "terminal",
           "palette": {
             "from": "#03150f",
             "via": "#0d5a40",
             "to": "#050a08",
             "accent": "#46e3a8"
-          }
+          },
+          "tags": [
+            "C++",
+            "Linux",
+            "Scheduling"
+          ],
+          "project": "cfs-scheduler",
+          "description": "CFS Scheduler — Linux's Completely Fair Scheduler rebuilt in C++: vruntime, weights and a min-heap runqueue."
+        },
+        {
+          "code": "S04 E04",
+          "title": "The Engineer",
+          "runtime": "Aug 2026 – Present",
+          "motif": "chip",
+          "palette": {
+            "from": "#04121f",
+            "via": "#0f4c6e",
+            "to": "#05080d",
+            "accent": "#4cc9ff"
+          },
+          "tags": [
+            "Embedded Linux",
+            "C/C++",
+            "Python",
+            "systemd"
+          ],
+          "experience": "ABB",
+          "description": "Embedded Linux intern at ABB Bangalore, working on the ZEE600C substation automation platform."
         }
       ]
     },
@@ -796,44 +1163,34 @@
       "number": 5,
       "title": "What's Next",
       "period": "Now streaming",
-      "synopsis": "The next arc of the story: an AI/ML Engineer role.",
+      "synopsis": "The next arc: an engineering role across AI/ML, full-stack and embedded software.",
       "episodes": [
         {
           "code": "S05 E01",
           "title": "The Next Chapter",
-          "description": "Seeking an AI/ML Engineer role — building with Machine Learning, Deep Learning and Generative AI.",
-          "tags": [
-            "GenAI",
-            "LLMs",
-            "RAG"
-          ],
           "runtime": "In production",
+          "motif": "neural",
           "palette": {
             "from": "#24060b",
             "via": "#6e0d1d",
             "to": "#09070a",
             "accent": "#ff3d5a"
-          }
+          },
+          "tags": [
+            "AI / ML",
+            "Full-Stack",
+            "Embedded"
+          ],
+          "description": "Open to AI/ML, full-stack and embedded software roles — building AI products from the model to the metal."
         }
       ]
     }
   ],
   "topPicks": [
     {
-      "label": "Primary language",
-      "title": "Python",
-      "detail": "Across every AI Original",
-      "palette": {
-        "from": "#1c1003",
-        "via": "#6b3c06",
-        "to": "#0a0806",
-        "accent": "#ffb547"
-      }
-    },
-    {
       "label": "The AI Original",
       "title": "ShadowTrace",
-      "detail": "1M+ messages • 6+ NLP modules",
+      "detail": "1M+ messages • 4-provider LLM fallback",
       "palette": {
         "from": "#24060b",
         "via": "#6e0d1d",
@@ -842,9 +1199,9 @@
       }
     },
     {
-      "label": "The GenAI build",
-      "title": "MediRAG",
-      "detail": "LangChain • Mistral AI • Pinecone",
+      "label": "Current role",
+      "title": "ABB",
+      "detail": "Embedded Linux Intern • ZEE600C",
       "palette": {
         "from": "#04121f",
         "via": "#0f4c6e",
@@ -853,9 +1210,20 @@
       }
     },
     {
-      "label": "Current role",
-      "title": "ABB",
-      "detail": "Embedded Systems (Linux) Intern",
+      "label": "National exam",
+      "title": "GATE 2025",
+      "detail": "Score 503 • CS & IT",
+      "palette": {
+        "from": "#1c1003",
+        "via": "#6b3c06",
+        "to": "#0a0806",
+        "accent": "#ffb547"
+      }
+    },
+    {
+      "label": "The GenAI build",
+      "title": "MediRAG",
+      "detail": "LangChain • Mistral AI • Pinecone",
       "palette": {
         "from": "#120822",
         "via": "#3d1a6e",
@@ -864,9 +1232,9 @@
       }
     },
     {
-      "label": "Postgrad",
-      "title": "NIT Silchar",
-      "detail": "M.Tech CSE • CGPA 7.94",
+      "label": "Close to the kernel",
+      "title": "CFS Scheduler",
+      "detail": "Linux's fair scheduler in C++",
       "palette": {
         "from": "#03150f",
         "via": "#0d5a40",
@@ -875,20 +1243,9 @@
       }
     },
     {
-      "label": "First internship",
-      "title": "C-DAC Pune",
-      "detail": "Open5GS • UERANSIM",
-      "palette": {
-        "from": "#1c1003",
-        "via": "#6b3c06",
-        "to": "#0a0806",
-        "accent": "#ffb547"
-      }
-    },
-    {
-      "label": "Problems solved",
-      "title": "200+",
-      "detail": "LeetCode • GFG • Coding Ninjas",
+      "label": "Postgrad",
+      "title": "NIT Silchar",
+      "detail": "M.Tech CSE • CGPA 7.94",
       "palette": {
         "from": "#24060b",
         "via": "#6e0d1d",
@@ -897,9 +1254,9 @@
       }
     },
     {
-      "label": "Full-stack + AI",
-      "title": "Fitness Tracker",
-      "detail": "~75–85% food recognition accuracy",
+      "label": "Systems internship",
+      "title": "C-DAC Pune",
+      "detail": "Open5GS • UERANSIM",
       "palette": {
         "from": "#04121f",
         "via": "#0f4c6e",
@@ -908,9 +1265,20 @@
       }
     },
     {
-      "label": "Undergrad",
-      "title": "Tezpur University",
-      "detail": "B.Tech CSE • CGPA 8.01",
+      "label": "Full-stack + AI",
+      "title": "Fitness Tracker",
+      "detail": "~75–85% food recognition accuracy",
+      "palette": {
+        "from": "#1c1003",
+        "via": "#6b3c06",
+        "to": "#0a0806",
+        "accent": "#ffb547"
+      }
+    },
+    {
+      "label": "Data internship",
+      "title": "Sparks Foundation",
+      "detail": "Python • Pandas • Power BI",
       "palette": {
         "from": "#03150f",
         "via": "#0d5a40",
@@ -919,9 +1287,9 @@
       }
     },
     {
-      "label": "Leadership",
-      "title": "NSS",
-      "detail": "Department Representative",
+      "label": "Problems solved",
+      "title": "200+",
+      "detail": "LeetCode • GFG • Coding Ninjas",
       "palette": {
         "from": "#120822",
         "via": "#3d1a6e",
@@ -936,43 +1304,48 @@
       "title": "M.Tech · CSE",
       "lines": [
         "National Institute of Technology Silchar, Assam",
-        "August 2025 – May 2027",
+        "Admitted through GATE 2025 (score 503)",
         "B.Tech CSE · Tezpur University · CGPA 8.01"
       ],
       "chips": [
-        "CGPA 7.94"
+        "CGPA 7.94",
+        "GATE 2025"
       ]
     },
     {
-      "kicker": "Skills",
-      "title": "Python first.",
+      "kicker": "Three pillars",
+      "title": "Model → App → Metal",
       "lines": [
-        "ML · Deep Learning · NLP · LLMs · RAG · Computer Vision",
-        "PyTorch, TensorFlow, LangChain · FAISS, Pinecone"
+        "AI / ML — LLMs, RAG, NLP, deep learning",
+        "Full-Stack — React, Flask, Node.js, REST APIs",
+        "Embedded — C/C++, Linux, systemd, kernel debugging"
       ],
       "chips": [
         "Python",
-        "PyTorch",
         "LangChain",
-        "RAG",
         "React",
+        "C++",
+        "Linux",
         "Docker"
       ]
     },
     {
       "kicker": "Experience",
-      "title": "Two Internships",
+      "title": "Three Internships",
       "lines": [
-        "Embedded Systems (Linux) Intern · ABB Bangalore · Aug 2026 – Present",
-        "Open5G Intern · C-DAC Pune · Jun – Aug 2024"
+        "Embedded Linux Intern · ABB · Aug 2026 – Present",
+        "Data Science & Business Analytics Intern · The Sparks Foundation · Aug 2024 – Oct 2024",
+        "Open5G Intern · C-DAC Pune · Jun 2024 – Aug 2024"
       ]
     },
     {
       "kicker": "Projects",
-      "title": "Three Originals",
+      "title": "Five Originals",
       "lines": [
-        "ShadowTrace — 1M+ messages, 6+ NLP modules",
-        "MediRAG — LangChain, Mistral AI, Pinecone",
+        "ShadowTrace — 1M+ messages, 4-provider LLM fallback",
+        "MediRAG — grounded medical RAG with Mistral and Pinecone",
+        "CFS Scheduler — Linux's fair scheduler in C++",
+        "SocketChat — a chat over raw TCP sockets",
         "AI Fitness Tracker — ~75–85% food recognition"
       ]
     },
@@ -980,16 +1353,16 @@
       "kicker": "Achievements",
       "title": "Top Moments",
       "lines": [
+        "GATE 2025 — Computer Science & IT, score 503",
         "200+ problems solved — LeetCode, GFG, Coding Ninjas",
-        "Department Representative — NSS",
-        "Assistant Prefect — Patkai Men's Hostel"
+        "NSS Department Representative · Assistant Prefect, Patkai Men's Hostel"
       ]
     },
     {
       "kicker": "Current mission",
       "title": "Now seeking",
       "lines": [
-        "An AI/ML Engineer role · Generative AI · LLMs & RAG"
+        "AI/ML · Full-Stack · Embedded software roles"
       ]
     }
   ],

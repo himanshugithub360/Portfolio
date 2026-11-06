@@ -4,8 +4,9 @@
  *
  *   GET  /__admin/api/session        → { authRequired, authed }
  *   POST /__admin/api/login          { password } → { token }
- *   GET  /__admin/api/content        → content.json
- *   PUT  /__admin/api/content        content.json body → saves it (the site hot-reloads)
+ *   GET  /__admin/api/content        → { content, version }
+ *   PUT  /__admin/api/content        { content, version } → saves it (the site hot-reloads); answers 409
+ *                                    if content.json changed since that version (e.g. edited by hand)
  *   POST /__admin/api/photo?crop=…   image body → rebuilds the portrait images
  *   POST /__admin/api/resume         PDF body → replaces the resume download
  *   GET  /__admin/api/backups        → recent saved versions;  POST /__admin/api/restore { name }
@@ -17,10 +18,11 @@
 import type { Plugin, Connect } from 'vite';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { execFile } from 'node:child_process';
-import { randomBytes, timingSafeEqual } from 'node:crypto';
+import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { buildPortraits, PHOTO_CANDIDATES } from '../scripts/portrait.mjs';
+import { MOTIF_IDS } from '../src/data/motifs';
 
 const MB = 1024 * 1024;
 const KEEP_BACKUPS = 30;
@@ -68,8 +70,13 @@ function validate(c: unknown): string[] {
     if (!p.id || !/^[a-z0-9-]+$/.test(p.id)) errors.push(`${name}: ID must be lowercase letters, numbers and dashes.`);
     else if (ids.has(p.id)) errors.push(`${name}: ID "${p.id}" is used twice.`);
     else ids.add(p.id);
-    if (!['shield', 'flow', 'tenants'].includes(p.motif ?? '')) errors.push(`${name}: background art must be shield, flow or tenants.`);
+    if (!MOTIF_IDS.includes(p.motif ?? '')) errors.push(`${name}: unknown background art "${p.motif}".`);
   });
+  (o.seasons as { title?: string; episodes?: { title?: string; motif?: string }[] }[]).forEach((s) =>
+    (s.episodes ?? []).forEach((e) => {
+      if (e.motif && !MOTIF_IDS.includes(e.motif)) errors.push(`${s.title} → ${e.title}: unknown background art "${e.motif}".`);
+    }),
+  );
   const profile = o.profile as { fullName?: string; firstName?: string };
   if (!profile.fullName?.trim()) errors.push('Profile: full name is required.');
   if (!profile.firstName?.trim()) errors.push('Profile: first name is required.');
@@ -132,6 +139,7 @@ export default function adminPlugin({ password }: { password?: string }): Plugin
       const contentPath = join(root, 'src/data/content.json');
       const backupDir = join(root, '.admin-backups');
       const readContent = () => JSON.parse(readFileSync(contentPath, 'utf8'));
+      const version = () => createHash('sha1').update(readFileSync(contentPath)).digest('hex');
 
       const writeContent = (c: unknown) => {
         const errors = validate(c);
@@ -189,11 +197,18 @@ export default function adminPlugin({ password }: { password?: string }): Plugin
             return send(res, 200, { ok: true });
           }
 
-          if (route === 'GET /content') return send(res, 200, readContent());
+          if (route === 'GET /content') return send(res, 200, { content: readContent(), version: version() });
 
           if (route === 'PUT /content') {
-            writeContent(await readJson(req));
-            return send(res, 200, { ok: true });
+            const body = await readJson<{ content?: unknown; version?: string }>(req);
+            if (body.version && body.version !== version()) {
+              throw new HttpError(
+                409,
+                'content.json was changed outside the admin since you opened it (for example edited by hand). Reload the admin to get the latest version — saving now would overwrite those changes.',
+              );
+            }
+            writeContent(body.content);
+            return send(res, 200, { ok: true, version: version() });
           }
 
           if (route === 'POST /photo') {

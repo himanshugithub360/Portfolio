@@ -7,6 +7,9 @@
  * Every component reads from the exports below, so the whole site follows either way.
  */
 import content from './content.json';
+import type { Motif } from './motifs';
+
+export type { Motif } from './motifs';
 
 export type Palette = { from: string; via: string; to: string; accent: string };
 
@@ -53,7 +56,7 @@ export type Project = {
   /** Live demo, when one exists. */
   live?: string;
   palette: Palette;
-  motif: 'shield' | 'flow' | 'tenants';
+  motif: Motif;
 };
 
 export type Achievement = { id: string; title: string; org: string; detail: string; laurel: string; link?: string };
@@ -62,7 +65,22 @@ export type Certification = { issuer: string; name: string; link: string };
 export type Skill = { name: string; mono: string; note?: string };
 export type SkillCategory = { id: string; title: string; subtitle: string; skills: Skill[] };
 
-export type Episode = { code: string; title: string; description: string; tags: string[]; runtime: string; palette: Palette };
+export type Episode = {
+  code: string;
+  title: string;
+  description: string;
+  tags: string[];
+  runtime: string;
+  palette: Palette;
+  /** Background art; plain gradient when omitted. */
+  motif?: Motif;
+  /** Company of a linked Experience entry — its role, dates and bullets show when the episode is opened. */
+  experience?: string;
+  /** ID of a linked project — adds a button that opens it. */
+  project?: string;
+  /** Extra bullet points shown when the episode is opened. */
+  details?: string[];
+};
 export type Season = { number: number; title: string; period: string; synopsis: string; episodes: Episode[] };
 
 export type TopPick = { label: string; title: string; detail: string; palette: Palette };

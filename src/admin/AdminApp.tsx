@@ -25,6 +25,9 @@ export default function AdminApp() {
   const [authRequired, setAuthRequired] = useState(false);
   const [saved, setSaved] = useState<Content | null>(null);
   const [draft, setDraft] = useState<Content | null>(null);
+  // Hash of content.json when it was loaded; the server refuses a save if the file changed since.
+  const [version, setVersion] = useState('');
+  const [conflict, setConflict] = useState(false);
   const [pageId, setPageId] = useState(() => location.hash.slice(1) || 'profile');
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<Toast>(null);
@@ -33,9 +36,11 @@ export default function AdminApp() {
 
   const load = useCallback(async () => {
     try {
-      const c = await api.content();
+      const { content: c, version: v } = await api.content();
       setSaved(c);
       setDraft(c);
+      setVersion(v);
+      setConflict(false);
       setPhase('ready');
     } catch (e) {
       if (e instanceof ApiError && e.status === 401) setPhase('login');
@@ -86,16 +91,18 @@ export default function AdminApp() {
     setSaving(true);
     try {
       const clean = normalize(draft);
-      await api.save(clean);
+      const r = await api.save(clean, version);
       setSaved(clean);
       setDraft(clean);
+      setVersion(r.version);
       setToast({ kind: 'ok', text: 'Saved. The site has been updated.' });
     } catch (e) {
-      setToast({ kind: 'error', text: e instanceof Error ? e.message : String(e) });
+      if (e instanceof ApiError && e.status === 409) setConflict(true);
+      else setToast({ kind: 'error', text: e instanceof Error ? e.message : String(e) });
     } finally {
       setSaving(false);
     }
-  }, [draft, saving]);
+  }, [draft, saving, version]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -211,6 +218,27 @@ export default function AdminApp() {
           </aside>
         )}
       </div>
+
+      {conflict && (
+        <div role="alertdialog" aria-labelledby="conflict-title" className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+            <h2 id="conflict-title" className="text-lg font-semibold text-zinc-900">Content changed elsewhere</h2>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+              <code className="rounded bg-zinc-100 px-1">content.json</code> was edited outside this admin tab since you opened it (by hand, another admin tab, or a restore). Your save was stopped so those changes aren’t
+              lost.
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-600">Reload to get the latest version, then redo your edits. Unsaved edits in this tab will be discarded.</p>
+            <div className="mt-5 flex justify-end gap-2">
+              <button type="button" className="ad-btn ad-btn-ghost" onClick={() => setConflict(false)}>
+                Keep editing
+              </button>
+              <button type="button" className="ad-btn ad-btn-primary" onClick={() => load()}>
+                Reload latest
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {toast && (
         <div

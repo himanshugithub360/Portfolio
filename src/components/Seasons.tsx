@@ -1,12 +1,15 @@
 import { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { copy, seasons } from '../data/portfolio';
+import { copy, seasons, type Project } from '../data/portfolio';
 import { EASE, SectionHeading } from './fx';
 import EpisodeCard from './EpisodeCard';
+import EpisodeModal from './EpisodeModal';
 import { RailButtons } from './Rail';
 
-export default function Seasons() {
-  const [active, setActive] = useState(seasons.length - 2);
+export default function Seasons({ onOpenProject }: { onOpenProject?: (p: Project) => void }) {
+  const [active, setActive] = useState(Math.max(0, seasons.length - 2));
+  const [openEp, setOpenEp] = useState<number | null>(null);
   const season = seasons[active];
   const rail = useRef<HTMLDivElement>(null);
 
@@ -61,13 +64,23 @@ export default function Seasons() {
           <div className="group/rail relative">
             <div ref={rail} className="rail gutter flex snap-x snap-mandatory gap-4 overflow-x-auto py-8 [perspective:1200px]">
               {season.episodes.map((e, i) => (
-                <EpisodeCard key={e.code} episode={e} index={i} />
+                <EpisodeCard key={e.code + e.title} episode={e} index={i} onOpen={() => setOpenEp(i)} />
               ))}
             </div>
             <RailButtons rail={rail} />
           </div>
         </motion.div>
       </AnimatePresence>
+
+      {/* Portalled to <body>: this section sits inside transformed scroll scenes, which would break position: fixed. */}
+      {createPortal(
+        <AnimatePresence>
+          {openEp !== null && season.episodes[openEp] && (
+            <EpisodeModal key="episode" season={season} index={openEp} onClose={() => setOpenEp(null)} onSwitch={setOpenEp} onOpenProject={onOpenProject} />
+          )}
+        </AnimatePresence>,
+        document.body,
+      )}
     </>
   );
 }

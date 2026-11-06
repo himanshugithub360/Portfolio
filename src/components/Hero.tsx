@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
-import { hero, profile, type ProfileId } from '../data/portfolio';
+import { experience, hero, profile, projects, type ProfileId } from '../data/portfolio';
 import { useFinePointer } from '../hooks/useMedia';
 import { useSmoothScroll } from '../hooks/smoothScroll';
 import { EASE, Magnetic, Particles } from './fx';
@@ -36,7 +36,8 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
   const chipY = useTransform(py, [-1, 1], [12, -12]);
   const glowX = useTransform(px, [-1, 1], ['-6%', '6%']);
 
-  const meta = hero.meta;
+  // {projects} and {internships} keep the counts in sync with the content automatically.
+  const meta = hero.meta.map((m) => m.replace('{projects}', String(projects.length)).replace('{internships}', String(experience.length)));
 
   // Up to three floating chips around the portrait, in these fixed positions.
   const CHIP_SPOTS = [

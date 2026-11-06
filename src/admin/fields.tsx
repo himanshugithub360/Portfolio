@@ -140,7 +140,7 @@ function FieldView({ field: f, value, onChange }: { field: Field; value: Any; on
       return wrap(
         <>
           <Label htmlFor={id} help={f.help}>{f.label}</Label>
-          <select id={id} className="ad-input" value={value ?? ''} onChange={(e) => onChange(e.target.value)}>
+          <select id={id} className="ad-input" value={value ?? ''} onChange={(e) => onChange(e.target.value === '' ? undefined : e.target.value)}>
             {!f.options.some((o) => o.value === value) && value && <option value={value}>{value}</option>}
             {f.options.map((o) => (
               <option key={o.value} value={o.value}>

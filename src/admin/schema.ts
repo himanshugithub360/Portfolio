@@ -1,4 +1,5 @@
 import type { Content, SectionId } from '../data/portfolio';
+import { MOTIFS } from '../data/motifs';
 import { FONT_CHOICES } from '../theme';
 import type { Field } from './fields';
 
@@ -61,7 +62,12 @@ export function buildPages(c: Content): Page[] {
       root: 'hero',
       fields: [
         { key: 'badge', label: 'Badge', type: 'text', half: true, help: 'Small boxed label before the info line.' },
-        { key: 'meta', label: 'Info line', type: 'list', help: 'Short facts shown in a row, separated by dots.' },
+        {
+          key: 'meta',
+          label: 'Info line',
+          type: 'list',
+          help: 'Short facts shown in a row, separated by dots. {projects} and {internships} are replaced with live counts, e.g. “{projects} Originals”.',
+        },
         {
           key: 'chips',
           label: 'Floating chips',
@@ -200,11 +206,7 @@ export function buildPages(c: Content): Page[] {
               label: 'Background art',
               type: 'select',
               half: true,
-              options: [
-                { value: 'shield', label: 'Shield' },
-                { value: 'flow', label: 'Flow' },
-                { value: 'tenants', label: 'Grid' },
-              ],
+              options: MOTIFS.map((m) => ({ value: m.id, label: m.label })),
             },
             paletteField,
           ],
@@ -309,7 +311,31 @@ export function buildPages(c: Content): Page[] {
                 { key: 'title', label: 'Title', type: 'text', half: true },
                 { key: 'code', label: 'Code', type: 'text', half: true, help: 'e.g. S01 E02' },
                 { key: 'runtime', label: 'Runtime line', type: 'text', half: true, help: 'Dates or a short label.' },
-                { key: 'description', label: 'Description', type: 'textarea', rows: 2 },
+                {
+                  key: 'motif',
+                  label: 'Background art',
+                  type: 'select',
+                  half: true,
+                  options: [{ value: '', label: 'None (plain)' }, ...MOTIFS.map((m) => ({ value: m.id, label: m.label }))],
+                },
+                { key: 'description', label: 'Description', type: 'textarea', rows: 2, help: 'Shown on the card.' },
+                {
+                  key: 'experience',
+                  label: 'Linked experience',
+                  type: 'select',
+                  half: true,
+                  help: 'Opening the episode shows this role’s full details from the Experience page.',
+                  options: [{ value: '', label: 'None' }, ...c.experience.map((x) => ({ value: x.company, label: `${x.role} — ${x.company}` }))],
+                },
+                {
+                  key: 'project',
+                  label: 'Linked project',
+                  type: 'select',
+                  half: true,
+                  help: 'Adds a button that opens this project.',
+                  options: [{ value: '', label: 'None' }, ...c.projects.map((p) => ({ value: p.id, label: p.title }))],
+                },
+                { key: 'details', label: 'Extra details', type: 'list', multiline: true, help: 'More bullet points, shown when the episode is opened.' },
                 { key: 'tags', label: 'Tags', type: 'list' },
                 paletteField,
               ],

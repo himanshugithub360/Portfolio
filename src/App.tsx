@@ -100,7 +100,7 @@ function Series() {
 
   const sections: Record<SectionId, ReactNode> = {
     about: <About />,
-    journey: <Seasons />,
+    journey: <Seasons onOpenProject={setProject} />,
     originals: <Originals onOpen={setProject} />,
     picks: <TopPicks />,
     skills: <Skills />,
