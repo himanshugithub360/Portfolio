@@ -1458,10 +1458,10 @@
     "filmGrain": true,
     "hiddenSections": [],
     "photoCrop": {
-      "left": 900,
-      "top": 120,
-      "width": 1620,
-      "height": 2024
+      "left": 0,
+      "top": 59,
+      "width": 1553,
+      "height": 1941
     }
   },
   "viewers": {
