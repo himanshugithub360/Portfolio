@@ -6,7 +6,7 @@
   --color-ink-3: #16161d;
   --color-crimson: #e5132b;
   --color-crimson-2: #ff3d5a;
-  --color-bone: #f4f1ec;
+  --color-bone: var(--color-bone);
   --color-mist: #a7a6ad;
   --color-smoke: #6d6c75;
   --font-display: 'Bebas Neue', 'Oswald', Impact, sans-serif;
@@ -118,7 +118,7 @@ a:focus-visible {
 .light-streak {
   position: absolute;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 90, 110, 0.9), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-crimson-2) 90%, transparent), transparent);
   filter: blur(0.4px);
   animation: streak 7s var(--ease-cine) infinite;
   opacity: 0;
@@ -134,7 +134,7 @@ a:focus-visible {
   to { background-position: 200% center; }
 }
 .shimmer-text {
-  background: linear-gradient(90deg, #f4f1ec 0%, #f4f1ec 40%, #ff8a9a 50%, #f4f1ec 60%, #f4f1ec 100%);
+  background: linear-gradient(90deg, var(--color-bone) 0%, var(--color-bone) 40%, color-mix(in srgb, var(--color-crimson-2) 55%, white) 50%, var(--color-bone) 60%, var(--color-bone) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;

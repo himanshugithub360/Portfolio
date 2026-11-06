@@ -1,18 +1,13 @@
 import { motion } from 'framer-motion';
-import { education, experience, profile, seasons } from '../data/portfolio';
+import { about, copy, profile, seasons } from '../data/portfolio';
 import { EASE, SectionHeading, Tilt } from './fx';
 
 export default function About() {
-  const facts = [
-    { k: 'Now', v: profile.degreeShort, s: `NIT Silchar · ${education[0].score}` },
-    { k: 'Experience', v: `${experience[0].role}, ${experience[0].company}`, s: experience[0].period },
-    { k: 'Primary language', v: profile.primaryLanguage.name, s: profile.primaryLanguage.with },
-    { k: 'Based in', v: profile.location, s: 'India' },
-  ];
+  const facts = about.facts;
 
   return (
     <>
-      <SectionHeading kicker="The Pilot" title="About Me" />
+      <SectionHeading kicker={copy.aboutKicker} title={copy.aboutTitle} />
       <div className="gutter grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
         <motion.div
           className="mx-auto w-full max-w-md lg:max-w-none"
@@ -23,7 +18,7 @@ export default function About() {
         >
         <Tilt max={5} className="rounded-2xl">
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-white/10">
-            <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_30%,#5a0b1b,#14060a_60%,#07070a)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_30%,color-mix(in_srgb,var(--color-crimson)_40%,var(--color-ink)),color-mix(in_srgb,var(--color-crimson)_10%,var(--color-ink))_60%,var(--color-ink))]" />
             <div className="absolute inset-0 opacity-50 [background-image:repeating-linear-gradient(90deg,rgba(255,255,255,0.03)_0px,rgba(255,255,255,0.03)_1px,transparent_1px,transparent_28px)]" />
             <img
               src="/assets/portrait-720.webp"

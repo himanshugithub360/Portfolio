@@ -27,35 +27,63 @@ The static site is written to `dist/` and can be deployed as-is to Vercel, Netli
 
 ## Updating the content
 
-**All content lives in one file: [`src/data/portfolio.ts`](src/data/portfolio.ts).** It was generated from the resume, and every component reads from it.
+**All content lives in one file: [`src/data/content.json`](src/data/content.json).** There are two ways to change it, and both edit that same file:
 
-| To change… | Edit |
+1. **Admin dashboard** — run `npm run dev` and open http://localhost:5173/admin.
+2. **By hand** — edit `src/data/content.json` in any editor. Save, and the running site reloads.
+
+### Admin dashboard
+
+| Page | What it edits |
 | --- | --- |
-| Name, intro, email, LinkedIn, GitHub | `profile` |
-| A project, or a new one | `projects` (add an object; it appears in Originals, the overlay, the resume sheet and the counts) |
-| Achievements / certifications | `achievements`, `certifications` |
-| Skills and their "where it's used" notes | `skillCategories`, `skillEvidence` |
-| Seasons and episodes (My Journey) | `seasons` |
-| Top 10 row | `topPicks` |
-| ▶ Play Intro highlight reel | `introSlides` |
-| Profile order (Recruiter / Developer / Creative) | `viewerProfiles` |
-| Opening studio card text | `profile.originalLabel` |
+| Personal info | Name, intro, role, tagline, email, LinkedIn, GitHub, interests |
+| Home screen | Badge, info line and floating chips around the photo |
+| About | The fact tiles next to the photo |
+| Education / Experience | Schools and internships/jobs |
+| Projects | Add, remove, reorder and edit projects (links, stack, bullets, result tiles, colours) |
+| Skills | Skill categories and the "where it shows up" hover notes |
+| Achievements | Award cards and certifications |
+| Journey / Top picks / Play Intro | Seasons & episodes, the Top 10 row, the highlight-reel slides |
+| Section text | Every section heading, menu names and footer |
+| Design | Colour presets, every colour, fonts, opening animation, cursor, film grain |
+| Sections & viewers | Hide sections; section order per "Who's watching?" profile |
+| Photo & resume | Upload a new portrait (background cut out automatically) or resume PDF |
+| Publish | Commit and push saved changes to GitHub; restore an earlier saved version |
 
-**Resume:** replace `public/assets/Himanshu_Kumar_Resume.pdf` (the download filename is `profile.resumeFileName`).
+- **Save** with the button or Ctrl+S. The site updates immediately. Each save keeps a backup in `.admin-backups/` (last 30, not committed).
+- **Publish** sends saved changes to GitHub. Until then they only exist on this computer.
+- The admin only exists while `npm run dev` is running. It is not part of `npm run build`, so a deployed site has no admin.
 
-**Photo:** replace `photo.jpg` (shot on a plain light background — it is cut out automatically; adjust `CROP` in `scripts/build-images.mjs` for a new framing), then run:
+**Using the admin from another device.** By default the admin only works on this computer. To allow other devices on your network, create a file named `.env.local` in the project folder containing:
+
+```
+ADMIN_PASSWORD=choose-a-strong-password
+```
+
+Restart `npm run dev`; the admin then asks for that password. `.env.local` is git-ignored, so the password is never published.
+
+### Editing content.json by hand
+
+Each top-level key matches an admin page: `profile`, `hero`, `about`, `copy` (headings), `education`, `experience`, `projects`, `achievements`, `certifications`, `skillCategories`, `skillEvidence`, `seasons`, `topPicks`, `introSlides`, `viewerProfiles`, `sections` (menu names), `theme` (colours, fonts) and `settings` (toggles, hidden sections, photo crop). JSON needs double quotes and no trailing commas; if the site stops loading after a hand edit, the terminal running `npm run dev` shows the line with the mistake.
+
+**Resume:** upload in the admin, or replace `public/assets/Himanshu_Kumar_Resume.pdf` (the download filename is `profile.resumeFileName`).
+
+**Photo:** upload in the admin, or replace `photo.jpg` (or `photo.png` with a transparent background) and run:
 
 ```bash
 npm run images
 ```
 
-This rebuilds the responsive WebP portraits and the social share image in `public/assets/`.
+This rebuilds the responsive WebP portraits and the social share image in `public/assets/`, using the crop in `settings.photoCrop` (`"auto"` finds you in the frame).
 
 ## What's inside
 
 ```
 src/
-  data/portfolio.ts        ← single source of truth (from the resume)
+  data/content.json        ← all content, theme and settings (edited by hand or by the admin)
+  data/portfolio.ts        ← typed access to content.json for the components
+  theme.ts                 ← applies theme colours and fonts as CSS variables
+  admin/                   ← admin dashboard UI (served at /admin in dev only)
   App.tsx                  ← stages: opening → profile select → home; overlays
   components/
     OpeningSequence        ← black → studio card → HIMANSHU → THE SERIES → portrait → ▶ PLAY
@@ -75,7 +103,8 @@ src/
     FinalCTA               ← TO BE CONTINUED… + contact links
     CustomCursor, fx.tsx   ← cursor states, magnetic buttons, 3D tilt, text reveals, particles
   hooks/                   ← Lenis smooth scroll + scroll lock, media queries, watch progress
-scripts/build-images.mjs   ← portrait/share-image pipeline (sharp)
+admin/vite-plugin-admin.ts ← admin API (save, uploads, backups, publish) — dev server only
+scripts/portrait.mjs       ← portrait/share-image pipeline (sharp), used by the admin and `npm run images`
 ```
 
 **Stack:** React 18, TypeScript, Vite 6, Tailwind CSS 4, Framer Motion 11, Lenis.

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { achievements, certifications, education, experience, profile, projects, skillCategories } from '../data/portfolio';
+import { achievements, certifications, copy, education, experience, profile, projects, skillCategories } from '../data/portfolio';
 import { EASE, Magnetic, SectionHeading } from './fx';
 
 /** THE FULL STORY — a designed resume preview plus view / download actions. */
 export default function ResumeSection({ onView }: { onView: () => void }) {
   return (
     <>
-      <SectionHeading kicker="The screenplay" title="The Full Story" />
+      <SectionHeading kicker={copy.storyKicker} title={copy.storyTitle} />
       <div className="gutter grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
         <motion.div
           initial={{ opacity: 0, y: 60, rotateX: 10 }}
@@ -20,7 +20,7 @@ export default function ResumeSection({ onView }: { onView: () => void }) {
         </motion.div>
 
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="font-serif text-3xl italic leading-tight text-bone">Every episode, on one page.</p>
+          <p className="font-serif text-3xl italic leading-tight text-bone">{copy.storyTagline}</p>
           <p className="mt-3 text-sm leading-relaxed text-mist">
             Education, experience, projects{certifications.length ? `, achievements and ${certifications.length} certifications` : ' and achievements'} — view it here or take a copy with you.
           </p>

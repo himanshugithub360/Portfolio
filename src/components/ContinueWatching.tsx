@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { sectionMeta, type SectionId } from '../data/portfolio';
+import { copy, sectionMeta, type SectionId } from '../data/portfolio';
 import { useWatchProgress } from '../hooks/sectionProgress';
 import { useSmoothScroll } from '../hooks/smoothScroll';
 import { useFinePointer } from '../hooks/useMedia';
@@ -20,7 +20,7 @@ export default function ContinueWatching({ order }: { order: SectionId[] }) {
   return (
     <section aria-labelledby="continue-title" className="relative z-10 -mt-10 pb-10 sm:-mt-16">
       <div className="gutter mb-4 flex items-end justify-between">
-        <RevealText as="h2" text="Continue Exploring" className="font-sans text-lg font-semibold tracking-tight text-bone sm:text-2xl" />
+        <RevealText as="h2" text={copy.continueTitle} className="font-sans text-lg font-semibold tracking-tight text-bone sm:text-2xl" />
         <span className="hidden text-xs text-smoke sm:block">Progress shows what you&apos;ve watched so far</span>
       </div>
       <div className="group/rail relative">
@@ -46,7 +46,7 @@ export default function ContinueWatching({ order }: { order: SectionId[] }) {
                 animate={{ x: shift, scale: fine && hovered === i ? 1.08 : 1, zIndex: hovered === i ? 10 : 1 }}
                 transition={{ duration: 0.5, ease: EASE, delay: 0 }}
               >
-                <div className="relative h-full w-full overflow-hidden rounded-lg ring-1 ring-white/10 transition duration-500 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,61,90,0.6)]">
+                <div className="relative h-full w-full overflow-hidden rounded-lg ring-1 ring-white/10 transition duration-500 group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_0_1px_color-mix(in_srgb,var(--color-crimson-2)_60%,transparent)]">
                   <motion.div className="absolute inset-0" animate={{ scale: hovered === i ? 1.12 : 1 }} transition={{ duration: 0.8, ease: EASE }}>
                     <PosterBackdrop palette={meta.palette}>
                       <span className="absolute -right-2 -top-6 font-display text-[8rem] leading-none text-white/[0.07] sm:text-[9rem]">{GLYPHS[id]}</span>

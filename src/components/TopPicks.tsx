@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { profile, topPicks } from '../data/portfolio';
+import { copy, topPicks } from '../data/portfolio';
 import { EASE, SectionHeading } from './fx';
 import { PosterBackdrop } from './Poster';
 import { RailButtons } from './Rail';
@@ -9,7 +9,7 @@ export default function TopPicks() {
   const rail = useRef<HTMLDivElement>(null);
   return (
     <>
-      <SectionHeading kicker="Top 10 · from the resume" title={`${profile.firstName.charAt(0) + profile.firstName.slice(1).toLowerCase()}'s Top Picks`} />
+      <SectionHeading kicker={copy.picksKicker} title={copy.picksTitle} />
       <div className="group/rail relative">
         <div ref={rail} className="rail gutter flex snap-x snap-mandatory gap-2 overflow-x-auto py-6">
           {topPicks.map((pick, i) => (
@@ -23,7 +23,7 @@ export default function TopPicks() {
             >
               <span
                 aria-hidden
-                className="text-outline -mr-6 select-none font-display leading-[0.78] transition duration-500 group-hover:[-webkit-text-stroke-color:rgba(255,61,90,0.85)] sm:-mr-8"
+                className="text-outline -mr-6 select-none font-display leading-[0.78] transition duration-500 group-hover:[-webkit-text-stroke-color:color-mix(in_srgb,var(--color-crimson-2)_85%,transparent)] sm:-mr-8"
                 style={{ fontSize: i === 9 ? 'clamp(9rem, 22vw, 15rem)' : 'clamp(11rem, 26vw, 19rem)', letterSpacing: i === 9 ? '-0.06em' : 0 }}
               >
                 {i + 1}

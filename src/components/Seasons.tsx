@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { seasons } from '../data/portfolio';
+import { copy, seasons } from '../data/portfolio';
 import { EASE, SectionHeading } from './fx';
 import EpisodeCard from './EpisodeCard';
 import { RailButtons } from './Rail';
@@ -14,8 +14,8 @@ export default function Seasons() {
     <>
       <SectionHeading
         kicker={`${seasons.length} Seasons`}
-        title="My Journey"
-        aside={<p className="max-w-xs text-sm text-mist">Every stage of the resume, told as a season — select one to see its episodes.</p>}
+        title={copy.journeyTitle}
+        aside={<p className="max-w-xs text-sm text-mist">{copy.journeyHint}</p>}
       />
 
       {/* season selector */}

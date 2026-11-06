@@ -1,6 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
-import { viewerProfiles, type ProfileId, type Project, type SectionId } from './data/portfolio';
+import { settings, theme, viewerProfiles, visibleOrder, type ProfileId, type Project, type SectionId } from './data/portfolio';
+import { applyTheme } from './theme';
 import { SmoothScrollProvider, useSmoothScroll } from './hooks/smoothScroll';
 import CustomCursor from './components/CustomCursor';
 import OpeningSequence from './components/OpeningSequence';
@@ -47,15 +48,19 @@ export default function App() {
 
 function Series() {
   const stored = readStoredProfile();
-  const [stage, setStage] = useState<Stage>(stored ? 'home' : 'opening');
-  const [profileId, setProfileId] = useState<ProfileId>(stored ?? 'himanshu');
+  const firstStage: Stage = settings.showOpening ? 'opening' : settings.showProfileSelector ? 'profiles' : 'home';
+  const [stage, setStage] = useState<Stage>(stored ? 'home' : firstStage);
+  const [profileId, setProfileId] = useState<ProfileId>(stored ?? 'main');
   const [playing, setPlaying] = useState(false);
   const [project, setProject] = useState<Project | null>(null);
   const [resumeOpen, setResumeOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const { scrollTo, lock, unlock } = useSmoothScroll();
 
-  const order = viewerProfiles.find((p) => p.id === profileId)!.order;
+  const order = visibleOrder(profileId);
+
+  // Re-applies whenever content.json changes (the admin saves → Vite hot-reloads this module).
+  useEffect(() => applyTheme(theme), []);
 
   useEffect(() => {
     if (stage === 'home') return;
@@ -105,11 +110,11 @@ function Series() {
 
   return (
     <LayoutGroup>
-      <div className="grain" aria-hidden />
-      <CustomCursor />
+      {settings.filmGrain && <div className="grain" aria-hidden />}
+      {settings.customCursor && <CustomCursor />}
 
       <AnimatePresence>
-        {stage === 'opening' && <OpeningSequence key="opening" onDone={() => setStage('profiles')} />}
+        {stage === 'opening' && <OpeningSequence key="opening" onDone={() => setStage(settings.showProfileSelector ? 'profiles' : 'home')} />}
         {stage === 'profiles' && <ProfileSelector key="profiles" onPick={pickProfile} />}
       </AnimatePresence>
 

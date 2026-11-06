@@ -98,7 +98,7 @@ export function SeriesMark({ className = '' }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-1.5 ${className}`}>
       <svg viewBox="0 0 24 32" className="h-[1.1em] w-auto" aria-hidden>
-        <path d="M6 4v24M18 4v24M6 16h12" fill="none" stroke="#e5132b" strokeWidth="4" strokeLinecap="round" />
+        <path d="M6 4v24M18 4v24M6 16h12" fill="none" style={{ stroke: 'var(--color-crimson)' }} strokeWidth="4" strokeLinecap="round" />
       </svg>
       <span className="font-sans text-[0.62em] font-bold tracking-[0.36em] text-mist">SERIES</span>
     </span>

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { profile } from '../data/portfolio';
+import { copy, profile } from '../data/portfolio';
 import { useSmoothScroll } from '../hooks/smoothScroll';
 import { EASE, Magnetic, Particles } from './fx';
 import { SeriesMark } from './Poster';
@@ -14,7 +14,7 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
   const opacity = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
   const ctas = [
-    { label: "Let's Build", href: `mailto:${profile.email}?subject=${encodeURIComponent("Let's build something")}`, primary: true, cursor: 'play' },
+    { label: copy.ctaLabel, href: `mailto:${profile.email}?subject=${encodeURIComponent("Let's build something")}`, primary: true, cursor: 'play' },
     { label: 'LinkedIn', href: profile.links.linkedin, cursor: 'link' },
     { label: 'GitHub', href: profile.links.github, cursor: 'link' },
     { label: 'Email', href: `mailto:${profile.email}`, cursor: 'link' },
@@ -22,7 +22,7 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
 
   return (
     <section id="contact" ref={ref} className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-4 py-24 text-center">
-      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,rgba(229,19,43,0.18),transparent_70%)]" />
+      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,color-mix(in_srgb,var(--color-crimson)_18%,transparent),transparent_70%)]" />
       <Particles count={36} />
 
       <motion.p
@@ -31,13 +31,13 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        The Next Episode
+        {copy.finalKicker}
       </motion.p>
       <motion.h2
         className="relative font-display leading-[0.85] text-bone"
         style={{ fontSize: 'clamp(3.4rem, 13vw, 12rem)', letterSpacing: spacing, filter: blur, opacity }}
       >
-        TO BE CONTINUED…
+        {copy.finalTitle}
       </motion.h2>
 
       <motion.div
@@ -67,7 +67,7 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
                 rel={c.href.startsWith('http') ? 'noreferrer' : undefined}
                 data-cursor={c.cursor}
                 className={`flex min-h-12 items-center gap-2 rounded-full px-7 text-sm font-bold tracking-[0.12em] transition ${
-                  c.primary ? 'bg-crimson text-white shadow-[0_0_50px_rgba(229,19,43,0.5)] hover:bg-crimson-2' : 'border border-white/25 text-bone hover:border-bone hover:bg-white/10'
+                  c.primary ? 'bg-crimson text-white shadow-[0_0_50px_color-mix(in_srgb,var(--color-crimson)_50%,transparent)] hover:bg-crimson-2' : 'border border-white/25 text-bone hover:border-bone hover:bg-white/10'
                 }`}
               >
                 {c.primary && <span>▶</span>}
@@ -93,7 +93,7 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
           <SeriesMark />
         </div>
         <p className="text-[11px] leading-relaxed text-smoke">
-          © {new Date().getFullYear()} {profile.displayName}. A personal, streaming-inspired portfolio — not affiliated with any streaming service.
+          © {new Date().getFullYear()} {profile.displayName}. {copy.footer}
         </p>
       </footer>
     </section>

@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --color-brand: #e5132b;
+  --color-brand-dark: #b80e21;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: #f6f6f8;
+  color: #18181b;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Shared control styles live in the components layer so Tailwind utilities (hidden, lg:hidden, …) can override them. */
+@layer components {
+  /* Shared form control look */
+  .ad-input {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #d9d9e0;
+    background: #fff;
+    padding: 8px 11px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #18181b;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .ad-input:focus {
+    outline: none;
+    border-color: #e5132b;
+    box-shadow: 0 0 0 3px rgba(229, 19, 43, 0.14);
+  }
+  .ad-input:disabled {
+    background: #f1f1f4;
+    color: #71717a;
+  }
+  textarea.ad-input {
+    resize: vertical;
+    min-height: 72px;
+  }
+  
+  .ad-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.15s, border-color 0.15s, color 0.15s, opacity 0.15s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .ad-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .ad-btn-primary {
+    background: #e5132b;
+    color: #fff;
+  }
+  .ad-btn-primary:hover:not(:disabled) {
+    background: #b80e21;
+  }
+  .ad-btn-ghost {
+    border: 1px solid #d9d9e0;
+    background: #fff;
+    color: #27272a;
+  }
+  .ad-btn-ghost:hover:not(:disabled) {
+    border-color: #a1a1aa;
+  }
+  .ad-icon-btn {
+    display: inline-flex;
+    height: 28px;
+    width: 28px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    color: #71717a;
+    font-size: 14px;
+  }
+  .ad-icon-btn:hover:not(:disabled) {
+    background: #ececf0;
+    color: #18181b;
+  }
+  .ad-icon-btn:disabled {
+    opacity: 0.3;
+  }
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #e5132b;
+  outline-offset: 2px;
+}

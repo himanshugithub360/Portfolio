@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { achievements, certifications } from '../data/portfolio';
+import { achievements, certifications, copy } from '../data/portfolio';
 import { EASE, SectionHeading, Tilt } from './fx';
 import { RailButtons } from './Rail';
 
@@ -21,7 +21,7 @@ export default function Achievements() {
 
   return (
     <>
-      <SectionHeading kicker="Awards season" title="Top Moments" />
+      <SectionHeading kicker={copy.momentsKicker} title={copy.momentsTitle} />
 
       <div className="gutter grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [perspective:1400px]">
         {achievements.map((a, i) => (

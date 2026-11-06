@@ -6,3 +6,6 @@ dist
 # originals of the photo and resume (copies live in photo.jpg and public/assets)
 1747484220359.jpg
 AI_ML.pdf
+
+# admin dashboard: saved-version backups
+.admin-backups
