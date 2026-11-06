@@ -333,9 +333,6 @@ scripts/portrait.mjs        ← portrait and share-image pipeline
 
 ---
 
-## 🙏 Credits
-
-Built on the [Portfolio_series](https://github.com/Sushmitadasari/Portfolio_series) template by Sushmita Dasari, then reworked with new content, recruiter roles, an expandable Journey, generated key art and the admin dashboard.
 
 > A personal portfolio with a fictional streaming-platform look. It is not affiliated with Netflix or any other streaming service and uses none of their logos.
 
