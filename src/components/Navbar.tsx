@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import { sectionMeta, viewerProfiles, type ProfileId, type SectionId } from '../data/portfolio';
+import { copy, getViewer, sectionMeta, viewerProfiles, viewers, type ProfileId, type SectionId } from '../data/portfolio';
 import { useSmoothScroll } from '../hooks/smoothScroll';
 import { SeriesMark } from './Poster';
 import { ProfileAvatar } from './ProfileSelector';
@@ -51,7 +51,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
     scrollTo(`#${id}`, { offset: id === 'top' ? 0 : -64 });
   };
 
-  const current = viewerProfiles.find((p) => p.id === profileId)!;
+  const current = getViewer(profileId);
 
   return (
     <motion.header
@@ -82,7 +82,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
             onClick={() => go('contact')}
             className="hidden rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold tracking-[0.14em] text-bone transition hover:border-crimson-2 hover:text-crimson-2 sm:block"
           >
-            LET&apos;S BUILD
+            {copy.ctaLabel.toUpperCase()}
           </button>
           <div className="relative" ref={menuRef}>
             <button
@@ -109,9 +109,10 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
                   className="absolute right-0 top-12 w-60 origin-top-right rounded-xl border border-white/10 bg-ink-2/95 p-2 shadow-2xl backdrop-blur-xl"
                 >
                   <p className="px-3 pb-2 pt-1 text-[10px] font-semibold tracking-[0.24em] text-smoke">WHO&apos;S WATCHING?</p>
-                  {viewerProfiles.map((p) => (
+                  {viewerProfiles.map((p, i) => (
+                    <div key={p.id}>
+                    {i === 1 && <p className="mt-2 border-t border-white/10 px-3 pb-2 pt-3 text-[10px] font-semibold tracking-[0.24em] text-smoke">{viewers.recruiter.name.toUpperCase()} · {viewers.recruiter.title.toUpperCase()}</p>}
                     <button
-                      key={p.id}
                       role="menuitem"
                       type="button"
                       onClick={() => {
@@ -126,6 +127,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
                         <span className="block text-[11px] text-smoke">{p.blurb}</span>
                       </span>
                     </button>
+                    </div>
                   ))}
                 </motion.div>
               )}
@@ -154,7 +156,7 @@ export default function Navbar({ order, profileId, onSwitch }: { order: SectionI
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
             transition={{ duration: 0.45, ease: EASE }}
           >
-            {[{ id: 'top', label: 'Home' }, ...order.map((id) => ({ id, label: sectionMeta[id].nav })), { id: 'contact', label: "Let's Build" }].map((l, i) => (
+            {[{ id: 'top', label: 'Home' }, ...order.map((id) => ({ id, label: sectionMeta[id].nav })), { id: 'contact', label: copy.ctaLabel }].map((l, i) => (
               <motion.button
                 key={l.id}
                 type="button"

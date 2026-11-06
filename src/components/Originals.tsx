@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
-import { copy, profile, projects, type Project } from '../data/portfolio';
+import { copy, profile, type Project } from '../data/portfolio';
+import { useFocus } from '../focus';
 import { useDesktop, useReducedMotionPref } from '../hooks/useMedia';
 import { EASE, RevealText } from './fx';
 import ProjectCard from './ProjectCard';
@@ -16,6 +17,7 @@ export default function Originals({ onOpen }: { onOpen: (p: Project) => void }) 
 }
 
 function Intro() {
+  const { projects } = useFocus();
   return (
     <div className="flex w-full shrink-0 flex-col justify-center lg:w-[34vw]">
       <p className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.32em] text-crimson-2">
@@ -47,6 +49,7 @@ function Outro() {
 }
 
 function PinnedOriginals({ onOpen }: { onOpen: (p: Project) => void }) {
+  const { projects } = useFocus();
   const wrap = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const [dist, setDist] = useState(0);
@@ -97,6 +100,7 @@ function PinnedOriginals({ onOpen }: { onOpen: (p: Project) => void }) {
 }
 
 function RailOriginals({ onOpen }: { onOpen: (p: Project) => void }) {
+  const { projects } = useFocus();
   return (
     <div className="py-6">
       <div className="gutter mb-6">

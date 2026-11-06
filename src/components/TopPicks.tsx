@@ -1,11 +1,13 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { copy, topPicks } from '../data/portfolio';
+import { copy } from '../data/portfolio';
+import { useFocus } from '../focus';
 import { EASE, SectionHeading } from './fx';
 import { PosterBackdrop } from './Poster';
 import { RailButtons } from './Rail';
 
 export default function TopPicks() {
+  const { topPicks } = useFocus();
   const rail = useRef<HTMLDivElement>(null);
   return (
     <>

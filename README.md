@@ -46,7 +46,7 @@ The static site is written to `dist/` and can be deployed as-is to Vercel, Netli
 | Journey / Top picks / Play Intro | Seasons & episodes, the Top 10 row, the highlight-reel slides |
 | Section text | Every section heading, menu names and footer |
 | Design | Colour presets, every colour, fonts, opening animation, cursor, film grain |
-| Sections & viewers | Hide sections; section order per "Who's watching?" profile |
+| Sections & viewers | Hide sections; your own view; the Recruiter tile; recruiter roles (AI / ML, Full-Stack, Embedded…) with their own intro, section order and project / skill / top-pick order |
 | Photo & resume | Upload a new portrait (background cut out automatically) or resume PDF |
 | Publish | Commit and push saved changes to GitHub; restore an earlier saved version |
 
@@ -64,7 +64,7 @@ Restart `npm run dev`; the admin then asks for that password. `.env.local` is gi
 
 ### Editing content.json by hand
 
-Each top-level key matches an admin page: `profile`, `hero`, `about`, `copy` (headings), `education`, `experience`, `projects`, `achievements`, `certifications`, `skillCategories`, `skillEvidence`, `seasons`, `topPicks`, `introSlides`, `viewerProfiles`, `sections` (menu names), `theme` (colours, fonts) and `settings` (toggles, hidden sections, photo crop). JSON needs double quotes and no trailing commas; if the site stops loading after a hand edit, the terminal running `npm run dev` shows the line with the mistake.
+Each top-level key matches an admin page: `profile`, `hero`, `about`, `copy` (headings), `education`, `experience`, `projects`, `achievements`, `certifications`, `skillCategories`, `skillEvidence`, `seasons`, `topPicks`, `introSlides`, `viewers` (your view, the Recruiter tile and recruiter roles), `sections` (menu names), `theme` (colours, fonts) and `settings` (toggles, hidden sections, photo crop). JSON needs double quotes and no trailing commas; if the site stops loading after a hand edit, the terminal running `npm run dev` shows the line with the mistake.
 
 **Resume:** upload in the admin, or replace `public/assets/Himanshu_Kumar_Resume.pdf` (the download filename is `profile.resumeFileName`).
 
@@ -83,11 +83,12 @@ src/
   data/content.json        ← all content, theme and settings (edited by hand or by the admin)
   data/portfolio.ts        ← typed access to content.json for the components
   theme.ts                 ← applies theme colours and fonts as CSS variables
+  focus.tsx                ← the chosen view/role: puts its projects, skills, top picks and Journey season first
   admin/                   ← admin dashboard UI (served at /admin in dev only)
   App.tsx                  ← stages: opening → profile select → home; overlays
   components/
     OpeningSequence        ← black → studio card → HIMANSHU → THE SERIES → portrait → ▶ PLAY
-    ProfileSelector        ← "Who's watching?" (changes section order only)
+    ProfileSelector        ← "Who's watching?": your view or Recruiter → pick a role (AI / ML, Full-Stack, Embedded)
     Navbar                 ← hide-on-scroll nav, profile switcher, mobile menu
     Hero                   ← billboard: parallax portrait, particles, light streaks, floating chips
     PlayIntro              ← ▶ Play Intro: zoom into portrait → highlight reel (pause, ← →, tap zones)

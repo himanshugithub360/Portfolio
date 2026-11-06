@@ -1,10 +1,11 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
-import { experience, hero, profile, projects, type ProfileId } from '../data/portfolio';
+import { experience, hero, profile, projects } from '../data/portfolio';
 import { useFinePointer } from '../hooks/useMedia';
 import { useSmoothScroll } from '../hooks/smoothScroll';
 import { EASE, Magnetic, Particles } from './fx';
 import { SeriesMark } from './Poster';
+import { useFocus } from '../focus';
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.25 } } };
 const item = {
@@ -12,8 +13,10 @@ const item = {
   show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.9, ease: EASE } },
 };
 
-export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => void; onResume: () => void; profileId: ProfileId }) {
+export default function Hero({ onPlay, onResume }: { onPlay: () => void; onResume: () => void }) {
   const ref = useRef<HTMLElement>(null);
+  // Recruiter roles get their own intro and a resume-first button.
+  const { intro, isRole: isRecruiter } = useFocus();
   const fine = useFinePointer();
   const { scrollTo } = useSmoothScroll();
 
@@ -140,7 +143,7 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
         </motion.p>
 
         <motion.p variants={item} className="mt-4 max-w-xl text-[15px] leading-relaxed text-bone/80 sm:text-base">
-          {profile.intro}
+          {intro}
         </motion.p>
 
         <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
@@ -155,7 +158,7 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
             </button>
           </Magnetic>
           <Magnetic>
-            {profileId === 'recruiter' ? (
+            {isRecruiter ? (
               <button type="button" onClick={onResume} className="glass flex min-h-12 items-center gap-3 rounded-md px-6 py-3 text-[15px] font-semibold text-bone transition hover:bg-white/15 sm:px-8">
                 <span className="text-lg">⤓</span> View Resume
               </button>

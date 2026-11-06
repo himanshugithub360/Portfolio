@@ -42,7 +42,7 @@ const REQUIRED: Record<string, 'object' | 'array'> = {
   seasons: 'array',
   topPicks: 'array',
   introSlides: 'array',
-  viewerProfiles: 'array',
+  viewers: 'object',
   sections: 'object',
   theme: 'object',
   settings: 'object',
@@ -80,7 +80,19 @@ function validate(c: unknown): string[] {
   const profile = o.profile as { fullName?: string; firstName?: string };
   if (!profile.fullName?.trim()) errors.push('Profile: full name is required.');
   if (!profile.firstName?.trim()) errors.push('Profile: first name is required.');
-  if ((o.viewerProfiles as unknown[]).length !== 4) errors.push('Viewer profiles: there must be exactly four.');
+  const viewers = o.viewers as { main?: unknown; recruiter?: unknown; roles?: { id?: string; name?: string }[] };
+  if (!viewers.main || typeof viewers.main !== 'object') errors.push('Viewers: the main view is missing.');
+  if (!viewers.recruiter || typeof viewers.recruiter !== 'object') errors.push('Viewers: the Recruiter tile is missing.');
+  if (!Array.isArray(viewers.roles) || viewers.roles.length === 0) errors.push('Recruiter roles: add at least one role.');
+  else {
+    const roleIds = new Set<string>();
+    viewers.roles.forEach((r, i) => {
+      const name = r.name || `Role ${i + 1}`;
+      if (!r.id || !/^[a-z0-9-]+$/.test(r.id) || r.id === 'main') errors.push(`${name}: ID must be lowercase letters, numbers and dashes (and not “main”).`);
+      else if (roleIds.has(r.id)) errors.push(`${name}: ID "${r.id}" is used twice.`);
+      else roleIds.add(r.id);
+    });
+  }
   return errors;
 }
 

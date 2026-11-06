@@ -89,11 +89,37 @@ export type TopPick = { label: string; title: string; detail: string; palette: P
 export type IntroSlide = { kicker: string; title: string; lines: string[]; chips?: string[] };
 
 /** 'main' is the owner's own profile (shown with the portrait); the others reorder the sections. */
-export type ProfileId = 'main' | 'recruiter' | 'developer' | 'creative';
+/** 'main' is the owner's own view (shown with the portrait); every other id is a recruiter role. */
+export type ProfileId = string;
 export type SectionId = 'about' | 'journey' | 'originals' | 'picks' | 'skills' | 'moments' | 'story';
 export const SECTION_IDS: SectionId[] = ['about', 'journey', 'originals', 'picks', 'skills', 'moments', 'story'];
 
-export type ViewerProfile = { id: ProfileId; name: string; blurb: string; color: string; order: SectionId[] };
+export type ViewerProfile = {
+  id: ProfileId;
+  name: string;
+  blurb: string;
+  color: string;
+  order: SectionId[];
+  /** Short text on the avatar tile (roles only), e.g. AI or </>. */
+  glyph?: string;
+  /** Replaces the home-screen intro paragraph for this view. */
+  intro?: string;
+  /** Project IDs to show first, in this order. */
+  projects?: string[];
+  /** Skill category IDs to show first, in this order. */
+  skills?: string[];
+  /** Top pick titles to show first, in this order. */
+  picks?: string[];
+  /** Journey season number to open on. */
+  season?: number | string;
+};
+
+export type Viewers = {
+  main: ViewerProfile;
+  /** The "Recruiter" tile on the first screen, which leads to the roles. */
+  recruiter: { name: string; blurb: string; color: string; title: string; subtitle: string };
+  roles: ViewerProfile[];
+};
 
 export type Theme = {
   accent: string;
@@ -159,7 +185,7 @@ export type Content = {
   seasons: Season[];
   topPicks: TopPick[];
   introSlides: IntroSlide[];
-  viewerProfiles: ViewerProfile[];
+  viewers: Viewers;
   sections: Record<SectionId, { nav: string; card: string; palette: Palette }>;
   theme: Theme;
   settings: Settings;
@@ -181,7 +207,10 @@ export const skillEvidence = data.skillEvidence;
 export const seasons = data.seasons;
 export const topPicks = data.topPicks;
 export const introSlides = data.introSlides;
-export const viewerProfiles = data.viewerProfiles;
+export const viewers = data.viewers;
+/** The main view followed by every recruiter role. */
+export const viewerProfiles: ViewerProfile[] = [{ ...viewers.main, id: 'main' }, ...viewers.roles];
+export const isRole = (id: ProfileId) => id !== 'main';
 export const theme = data.theme;
 export const settings = data.settings;
 
@@ -200,7 +229,19 @@ export const sectionMeta = Object.fromEntries(
 ) as Record<SectionId, { nav: string; card: string; meta: string; palette: Palette }>;
 
 /** Section order for a viewer profile, minus any sections hidden in the admin. */
+export function getViewer(id: ProfileId): ViewerProfile {
+  return viewerProfiles.find((v) => v.id === id) ?? viewerProfiles[0];
+}
+
+/** Section order for a view, minus any sections hidden in the admin. Sections missing from the order go last. */
 export function visibleOrder(id: ProfileId): SectionId[] {
-  const p = viewerProfiles.find((v) => v.id === id) ?? viewerProfiles[0];
-  return p.order.filter((s) => !settings.hiddenSections.includes(s));
+  const p = getViewer(id);
+  const order = [...p.order.filter((s) => SECTION_IDS.includes(s)), ...SECTION_IDS.filter((s) => !p.order.includes(s))];
+  return order.filter((s) => !settings.hiddenSections.includes(s));
+}
+
+/** Items whose key appears in `first` come first, in that order; everything else keeps its original order. */
+export function prioritise<T>(items: T[], key: (t: T) => string, first: string[] = []): T[] {
+  const rank = new Map(first.map((k, i) => [k, i]));
+  return [...items].sort((a, b) => (rank.get(key(a)) ?? first.length) - (rank.get(key(b)) ?? first.length));
 }

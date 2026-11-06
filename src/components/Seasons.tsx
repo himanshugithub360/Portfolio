@@ -5,10 +5,12 @@ import { copy, seasons, type Project } from '../data/portfolio';
 import { EASE, SectionHeading } from './fx';
 import EpisodeCard from './EpisodeCard';
 import EpisodeModal from './EpisodeModal';
+import { useFocus } from '../focus';
 import { RailButtons } from './Rail';
 
 export default function Seasons({ onOpenProject }: { onOpenProject?: (p: Project) => void }) {
-  const [active, setActive] = useState(Math.max(0, seasons.length - 2));
+  const { seasonIndex } = useFocus();
+  const [active, setActive] = useState(seasonIndex);
   const [openEp, setOpenEp] = useState<number | null>(null);
   const season = seasons[active];
   const rail = useRef<HTMLDivElement>(null);

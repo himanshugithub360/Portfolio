@@ -29,6 +29,8 @@ export type Field =
       max?: number;
     })
   | (Base & { type: 'sectionOrder'; names: (id: SectionId) => string })
+  /** Reorderable list of every option; the saved value is the full order. */
+  | (Base & { type: 'order'; options: { value: string; label: string }[] })
   | (Base & { type: 'sectionSet'; names: (id: SectionId) => string })
   | (Base & { type: 'evidence' });
 
@@ -177,6 +179,13 @@ function FieldView({ field: f, value, onChange }: { field: Field; value: Any; on
         <>
           <Label help={f.help}>{f.label}</Label>
           <ItemList field={f} value={value ?? []} onChange={onChange} />
+        </>,
+      );
+    case 'order':
+      return wrap(
+        <>
+          <Label help={f.help}>{f.label}</Label>
+          <OrderList value={value ?? []} onChange={onChange} options={f.options} />
         </>,
       );
     case 'sectionOrder':
@@ -377,14 +386,20 @@ function ItemList({ field: f, value, onChange }: { field: Extract<Field, { type:
 }
 
 function SectionOrder({ value, onChange, names }: { value: SectionId[]; onChange: (v: SectionId[]) => void; names: (id: SectionId) => string }) {
-  // Keep every section in the list exactly once, even if the JSON was edited by hand.
-  const order = [...value.filter((v) => SECTION_IDS.includes(v)), ...SECTION_IDS.filter((s) => !value.includes(s))];
+  return <OrderList value={value} onChange={(v) => onChange(v as SectionId[])} options={SECTION_IDS.map((id) => ({ value: id, label: names(id) }))} />;
+}
+
+function OrderList({ value, onChange, options }: { value: string[]; onChange: (v: string[]) => void; options: { value: string; label: string }[] }) {
+  // Every option appears exactly once: saved ones in their saved order, then any new ones (even if the JSON was edited by hand).
+  const known = options.map((o) => o.value);
+  const order = [...value.filter((v) => known.includes(v)), ...known.filter((k) => !value.includes(k))];
+  const label = (v: string) => options.find((o) => o.value === v)?.label ?? v;
   return (
     <ol className="space-y-1.5">
-      {order.map((sid, i) => (
-        <li key={sid} className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-1.5">
+      {order.map((v, i) => (
+        <li key={v} className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-1.5">
           <span className="w-5 text-xs font-semibold text-zinc-400">{i + 1}</span>
-          <span className="flex-1 text-sm text-zinc-800">{names(sid)}</span>
+          <span className="flex-1 text-sm text-zinc-800">{label(v)}</span>
           <button type="button" className="ad-icon-btn" aria-label="Move up" disabled={i === 0} onClick={() => onChange(move(order, i, i - 1))}>↑</button>
           <button type="button" className="ad-icon-btn" aria-label="Move down" disabled={i === order.length - 1} onClick={() => onChange(move(order, i, i + 1))}>↓</button>
         </li>

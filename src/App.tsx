@@ -1,6 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
-import { settings, theme, viewerProfiles, visibleOrder, type ProfileId, type Project, type SectionId } from './data/portfolio';
+import { getViewer, settings, theme, viewerProfiles, visibleOrder, type ProfileId, type Project, type SectionId } from './data/portfolio';
+import { FocusProvider } from './focus';
 import { applyTheme } from './theme';
 import { SmoothScrollProvider, useSmoothScroll } from './hooks/smoothScroll';
 import CustomCursor from './components/CustomCursor';
@@ -80,8 +81,8 @@ function Series() {
         window.scrollTo(0, 0);
         setStage('home');
       } else {
-        const p = viewerProfiles.find((v) => v.id === id)!;
-        setToast(`Now watching as ${p.name} — ${p.blurb.toLowerCase()}`);
+        const p = getViewer(id);
+        setToast(`Now watching as ${p.name}${p.blurb ? ` — ${p.blurb}` : ''}`);
         scrollTo(0, { offset: 0 });
       }
     },
@@ -100,15 +101,16 @@ function Series() {
 
   const sections: Record<SectionId, ReactNode> = {
     about: <About />,
-    journey: <Seasons onOpenProject={setProject} />,
+    journey: <Seasons key={profileId} onOpenProject={setProject} />,
     originals: <Originals onOpen={setProject} />,
     picks: <TopPicks />,
-    skills: <Skills />,
+    skills: <Skills key={profileId} />,
     moments: <Achievements />,
     story: <ResumeSection onView={() => setResumeOpen(true)} />,
   };
 
   return (
+    <FocusProvider id={profileId}>
     <LayoutGroup>
       {settings.filmGrain && <div className="grain" aria-hidden />}
       {settings.customCursor && <CustomCursor />}
@@ -122,7 +124,7 @@ function Series() {
         <motion.div initial={{ opacity: 0, scale: 1.03, filter: 'blur(10px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }} transition={{ duration: 1, ease: EASE }}>
           <Navbar order={order} profileId={profileId} onSwitch={pickProfile} />
           <main>
-            <Hero key={`hero-${profileId}`} onPlay={() => setPlaying(true)} onResume={() => setResumeOpen(true)} profileId={profileId} />
+            <Hero key={`hero-${profileId}`} onPlay={() => setPlaying(true)} onResume={() => setResumeOpen(true)} />
             <ContinueWatching order={order} />
             {order.map((id) => (
               <Scene key={id} id={id} className={id === 'originals' ? '!py-0 sm:!py-0' : ''}>
@@ -154,5 +156,6 @@ function Series() {
         )}
       </AnimatePresence>
     </LayoutGroup>
+    </FocusProvider>
   );
 }

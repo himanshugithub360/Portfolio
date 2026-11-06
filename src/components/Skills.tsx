@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { copy, skillCategories, skillEvidence, type Skill } from '../data/portfolio';
+import { copy, skillEvidence, type Skill } from '../data/portfolio';
+import { useFocus } from '../focus';
 import { EASE, SectionHeading } from './fx';
 
 const HUES = ['#ff3d5a', '#4cc9ff', '#46e3a8', '#ffb547', '#b98bff', '#ff8a5c', '#7ee0ff'];
 
 export default function Skills() {
+  const { skillCategories } = useFocus();
   const [cat, setCat] = useState(0);
   const category = skillCategories[cat];
   const hue = HUES[cat % HUES.length];

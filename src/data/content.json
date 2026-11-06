@@ -1366,68 +1366,6 @@
       ]
     }
   ],
-  "viewerProfiles": [
-    {
-      "id": "main",
-      "name": "Himanshu",
-      "blurb": "The full series, in order",
-      "color": "#e5132b",
-      "order": [
-        "about",
-        "journey",
-        "originals",
-        "picks",
-        "skills",
-        "moments",
-        "story"
-      ]
-    },
-    {
-      "id": "recruiter",
-      "name": "Recruiter",
-      "blurb": "Resume, achievements & skills first",
-      "color": "#4cc9ff",
-      "order": [
-        "story",
-        "moments",
-        "skills",
-        "originals",
-        "about",
-        "journey",
-        "picks"
-      ]
-    },
-    {
-      "id": "developer",
-      "name": "Developer",
-      "blurb": "Projects, stack & GitHub first",
-      "color": "#46e3a8",
-      "order": [
-        "originals",
-        "skills",
-        "journey",
-        "moments",
-        "about",
-        "picks",
-        "story"
-      ]
-    },
-    {
-      "id": "creative",
-      "name": "Creative",
-      "blurb": "The story arc & highlights first",
-      "color": "#ffb547",
-      "order": [
-        "journey",
-        "picks",
-        "originals",
-        "moments",
-        "about",
-        "skills",
-        "story"
-      ]
-    }
-  ],
   "sections": {
     "about": {
       "nav": "About",
@@ -1525,5 +1463,150 @@
       "width": 1620,
       "height": 2024
     }
+  },
+  "viewers": {
+    "main": {
+      "id": "main",
+      "name": "Himanshu",
+      "blurb": "The full series, in order",
+      "color": "#e5132b",
+      "order": [
+        "about",
+        "journey",
+        "originals",
+        "picks",
+        "skills",
+        "moments",
+        "story"
+      ]
+    },
+    "recruiter": {
+      "name": "Recruiter",
+      "blurb": "Pick the role you’re hiring for",
+      "color": "#ffb547",
+      "title": "Hiring for which role?",
+      "subtitle": "Each view puts the most relevant projects, skills and experience first."
+    },
+    "roles": [
+      {
+        "id": "ai",
+        "name": "AI / ML role",
+        "glyph": "AI",
+        "blurb": "LLMs, RAG and NLP projects first",
+        "color": "#9b5cff",
+        "order": [
+          "originals",
+          "skills",
+          "journey",
+          "picks",
+          "moments",
+          "about",
+          "story"
+        ],
+        "intro": "M.Tech CSE student at NIT Silchar who builds LLM-powered products end to end — RAG pipelines, NLP and grounded GenAI. ShadowTrace analyses 1M+ messages through a 4-provider LLM router; MediRAG answers medical questions only from trusted sources.",
+        "projects": [
+          "shadowtrace",
+          "medirag",
+          "fitness-tracker",
+          "cfs-scheduler",
+          "socketchat"
+        ],
+        "skills": [
+          "aiml",
+          "genai",
+          "frameworks",
+          "cat-mw4xdug8",
+          "languages",
+          "databases"
+        ],
+        "picks": [
+          "ShadowTrace",
+          "MediRAG",
+          "Fitness Tracker",
+          "Sparks Foundation",
+          "GATE 2025",
+          "NIT Silchar"
+        ],
+        "season": 3
+      },
+      {
+        "id": "fullstack",
+        "name": "Full-Stack role",
+        "glyph": "</>",
+        "blurb": "Web apps, APIs and products first",
+        "color": "#4cc9ff",
+        "order": [
+          "originals",
+          "skills",
+          "journey",
+          "picks",
+          "moments",
+          "about",
+          "story"
+        ],
+        "intro": "Full-stack developer who ships complete products — React and TypeScript front ends, Flask and Node.js back ends, REST APIs and databases, with AI built in. From a React + Strapi fitness tracker to Flask and Streamlit apps around LLM pipelines.",
+        "projects": [
+          "fitness-tracker",
+          "shadowtrace",
+          "medirag",
+          "socketchat",
+          "cfs-scheduler"
+        ],
+        "skills": [
+          "web",
+          "databases",
+          "languages",
+          "tools",
+          "genai",
+          "fundamentals"
+        ],
+        "picks": [
+          "Fitness Tracker",
+          "ShadowTrace",
+          "MediRAG",
+          "GATE 2025",
+          "NIT Silchar"
+        ],
+        "season": 3
+      },
+      {
+        "id": "embedded",
+        "name": "Embedded role",
+        "glyph": "C++",
+        "blurb": "Embedded Linux, C/C++ and systems first",
+        "color": "#46e3a8",
+        "order": [
+          "journey",
+          "originals",
+          "skills",
+          "moments",
+          "picks",
+          "about",
+          "story"
+        ],
+        "intro": "Embedded Linux intern at ABB, working on the ZEE600C substation automation platform — C/C++ and Python applications, boot, kernel and systemd log analysis. Built a Linux CFS scheduler simulation and a raw-socket chat in C++, and deployed a 5G core with Open5GS at C-DAC.",
+        "projects": [
+          "cfs-scheduler",
+          "socketchat",
+          "shadowtrace",
+          "medirag",
+          "fitness-tracker"
+        ],
+        "skills": [
+          "cat-mw4wa9ky",
+          "languages",
+          "tools",
+          "fundamentals"
+        ],
+        "picks": [
+          "ABB",
+          "CFS Scheduler",
+          "C-DAC Pune",
+          "GATE 2025",
+          "NIT Silchar"
+        ],
+        "season": 4
+      }
+    ]
   }
 }

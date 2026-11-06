@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { projects, type Project } from '../data/portfolio';
+import type { Project } from '../data/portfolio';
+import { useFocus } from '../focus';
 import { useScrollLock } from '../hooks/smoothScroll';
 import { EASE, Magnetic } from './fx';
 import { ProjectArt } from './Poster';
@@ -30,6 +31,7 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
     scroller.current?.scrollTo({ top: 0 });
   }, [project.id]);
 
+  const { projects } = useFocus();
   const more = projects.filter((p) => p.id !== project.id);
 
   return (
