@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+*.local
+/.claude
+# originals of the photo and resume (copies live in photo.jpg and public/assets)
+1747484220359.jpg
+AI_ML.pdf
