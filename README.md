@@ -12,12 +12,19 @@ AI / ML Engineer · Full-Stack Developer · Embedded Linux · M.Tech CSE @ NIT S
 
 <br />
 
+<a href="https://portfolio-swart-five-sg3px8it6c.vercel.app/"><img src="https://img.shields.io/badge/%E2%96%B6%20%20OPEN%20THE%20LIVE%20SITE-e5132b?style=for-the-badge&labelColor=0b0b0c" alt="Open the live site" height="40"/></a>
+
+<sub>portfolio-swart-five-sg3px8it6c.vercel.app</sub>
+
+<br />
+
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
+[**🌐 Live site**](https://portfolio-swart-five-sg3px8it6c.vercel.app/) &nbsp;·&nbsp;
 [**📄 Resume**](public/assets/Himanshu_Kumar_Resume.pdf) &nbsp;·&nbsp;
 [**💼 LinkedIn**](https://www.linkedin.com/in/himanshukumar111/) &nbsp;·&nbsp;
 [**🐙 GitHub**](https://github.com/himanshugithub360) &nbsp;·&nbsp;
@@ -144,7 +151,8 @@ npm run dev
 
 | URL | What it is |
 | --- | --- |
-| `http://localhost:5173` | The portfolio |
+| [portfolio-swart-five-sg3px8it6c.vercel.app](https://portfolio-swart-five-sg3px8it6c.vercel.app/) | 🌐 The **live** portfolio on Vercel |
+| `http://localhost:5173` | The portfolio, running locally |
 | `http://localhost:5173/admin` | The admin dashboard |
 
 The dev server also listens on your network, so other devices on the same Wi-Fi can open the address Vite prints under **Network**.
@@ -156,7 +164,16 @@ npm run build      # type-checks, then builds to dist/
 npm run preview    # serves the build locally
 ```
 
-`dist/` is a static site — deploy it as-is to **Vercel**, **Netlify**, **GitHub Pages** or any static host.
+`dist/` is a static site that deploys as-is to any static host.
+
+### 🌐 Live deployment
+
+The portfolio is deployed on **Vercel**: **<https://portfolio-swart-five-sg3px8it6c.vercel.app/>**
+
+- Vercel is connected to this repository, so **every push to `main` redeploys automatically** (about a minute).
+- Settings: framework **Vite**, build command `npm run build`, output directory `dist`, no environment variables.
+- The admin dashboard is not part of the build, so the live site is read-only. Edit locally, then **Publish** in the admin (or `git push`).
+- Pushes to other branches get their own preview link; `main` stays untouched.
 
 ---
 
@@ -328,6 +345,7 @@ scripts/portrait.mjs        ← portrait and share-image pipeline
 - **“Content changed elsewhere” in the admin** — `content.json` was edited outside that tab. Click **Reload latest**, then redo your edit.
 - **Other devices can’t open the site** — they must be on the same network, and Windows Firewall must allow Node.js on port 5173.
 - **Can’t open the admin from another device** — set `ADMIN_PASSWORD` in `.env.local` and restart `npm run dev`.
+- **A change isn’t on the live site** — it must be pushed to `main` first (use **Publish** in the admin). Vercel then rebuilds in about a minute; refresh with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>. If the build failed, Vercel keeps the last good version live and shows the error under **Deployments**.
 
 </details>
 
@@ -342,6 +360,6 @@ scripts/portrait.mjs        ← portrait and share-image pipeline
 
 **HIMANSHU KUMAR** · *To be continued…*
 
-[LinkedIn](https://www.linkedin.com/in/himanshukumar111/) · [GitHub](https://github.com/himanshugithub360) · [Email](mailto:himanshuramgariya@gmail.com)
+[Live site](https://portfolio-swart-five-sg3px8it6c.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/himanshukumar111/) · [GitHub](https://github.com/himanshugithub360) · [Email](mailto:himanshuramgariya@gmail.com)
 
 </div>
