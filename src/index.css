@@ -134,7 +134,9 @@ a:focus-visible {
   to { background-position: 200% center; }
 }
 .shimmer-text {
-  background: linear-gradient(90deg, var(--color-bone) 0%, var(--color-bone) 40%, color-mix(in srgb, var(--color-crimson-2) 55%, white) 50%, var(--color-bone) 60%, var(--color-bone) 100%);
+  /* background-image (not the `background` shorthand): the shorthand would reset background-clip: text if the
+     minifier ever emits a second rule. --shimmer-highlight is set from the theme in theme.ts. */
+  background-image: linear-gradient(90deg, var(--color-bone) 0%, var(--color-bone) 40%, var(--shimmer-highlight, #ff8a9a) 50%, var(--color-bone) 60%, var(--color-bone) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;

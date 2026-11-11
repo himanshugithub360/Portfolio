@@ -24,6 +24,19 @@ export function hexToRgba(hex: string, alpha: number): string {
   return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`;
 }
 
+/** Blend two #rrggbb colours; `t` is how much of `b` (0–1). Invalid input returns `a`. */
+export function mixHex(a: string, b: string, t: number): string {
+  const parse = (hex: string) => {
+    const h = hex.replace('#', '');
+    const n = parseInt(h.length === 3 ? h.split('').map((c) => c + c).join('') : h.slice(0, 6), 16);
+    return Number.isNaN(n) ? null : [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  };
+  const x = parse(a);
+  const y = parse(b);
+  if (!x || !y) return a;
+  return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, '0')).join('');
+}
+
 function fontParam(name: string, kind: 'display' | 'serif' | 'sans') {
   const family = name.trim().replace(/ /g, '+');
   if (kind === 'serif') return `family=${family}:ital@0;1`;
@@ -45,6 +58,8 @@ export function applyTheme(t: Theme) {
     '--color-smoke': t.faint,
   };
   for (const [k, v] of Object.entries(colors)) if (v) root.setProperty(k, v);
+  // The bright band of the title shimmer: the bright accent lightened toward white.
+  root.setProperty('--shimmer-highlight', mixHex(t.accentBright, '#ffffff', 0.45));
 
   root.setProperty('--font-display', `'${t.fontDisplay}', ${FALLBACK.display}`);
   root.setProperty('--font-serif', `'${t.fontSerif}', ${FALLBACK.serif}`);
