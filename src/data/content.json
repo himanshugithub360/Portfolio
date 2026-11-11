@@ -92,7 +92,7 @@
     "journeyHint": "Every stage of the resume, told as a season — select one to see its episodes.",
     "originalsKicker": "Originals · AI · Systems",
     "originalsTitle": "ORIGINALS",
-    "originalsBlurb": "Five productions — an AI chat-intelligence platform, a medical RAG assistant, a Linux scheduler in C++, a raw-socket chat and a full-stack AI fitness app. Open any title for the full story.",
+    "originalsBlurb": "Five productions — an AI chat-intelligence platform, a safety-first medical RAG assistant, a Linux scheduler in C++, a multi-user raw-socket chat room and an AI fitness platform in the making. Open any title for the full story.",
     "picksKicker": "Top 10 · from the resume",
     "picksTitle": "Himanshu's Top Picks",
     "skillsKicker": "Genres",
@@ -232,41 +232,56 @@
       "id": "medirag",
       "title": "MediRAG",
       "genre": "GenAI • RAG • Healthcare",
-      "logline": "Meet Dr. Insight — a medical assistant that answers only from trusted medical documents, admits when it doesn't know, and always points you to a real doctor",
+      "logline": "Meet Dr. Insight — a medical assistant that answers only from trusted sources, spots emergencies before the AI speaks, admits when it doesn't know, and understands 10 languages.",
       "stack": [
         "Python",
         "Flask",
         "LangChain",
         "Mistral AI",
-        "HuggingFace",
-        "Pinecone"
+        "Pinecone",
+        "Hugging Face",
+        "BM25",
+        "SQLite",
+        "Docker",
+        "GitHub Actions"
       ],
       "build": [
-        "Built a RAG-based medical QA system with LangChain retrieval chains, Mistral Large and a Pinecone serverless vector index",
-        "Built the ingestion pipeline: PDF extraction with PyPDF, recursive text chunking (300 characters, 50 overlap) and HuggingFace all-MiniLM-L6-v2 embeddings.",
-        "Tuned retrieval and generation for safety: top-5 cosine similarity search, low temperature (0.2) and a system prompt that forbids fabricated facts and always recommends a doctor.",
-        "Developed a Flask chat app with session-based conversation memory and a responsive chat UI with typing indicators.",
-        "Short-circuited greetings with instant replies, cutting unnecessary LLM calls."
+        "Built a RAG medical assistant with LangChain, Pinecone and Mistral AI over 13,828 passages from four sources: the Gale Encyclopedia of Medicine, OpenStax Pharmacology, MedlinePlus and WHO fact sheets.",
+        "Raised retrieval Hit@5 from 56% to 100% (MRR 0.52 → 0.87) on a 16-question evaluation by moving to larger chunks and more sources, adding BM25 hybrid search and a cross-encoder reranker.",
+        "Put a safety layer in front of the model: emergency, crisis and dosage rules in English, Hindi and Hinglish, instant 112 / 108 / 14416 helplines, a “won’t guess” relevance cut-off and per-visitor rate limits.",
+        "Added 10-language support detected from the script, voice input and spoken answers, and lab-report and photo analysis with values range-checked in code rather than by the LLM.",
+        "Developed a Flask app with streaming answers, saved SQLite chat history, feedback review, dark and light themes and an animated landing page.",
+        "Containerised it with Docker and set up GitHub Actions CI (103 pytest tests, both images built on every push); a lite mode with ONNX embeddings and a hosted reranker cuts memory from ~2 GB to ~240 MB, so it runs free on Render and redeploys when CI passes."
       ],
       "features": [
-        "Answers grounded in medical PDFs through retrieval-augmented generation",
-        "Says “I don't know” instead of guessing, and recommends a real doctor",
-        "Semantic search over a Pinecone vector index (cosine, 384-dim MiniLM embeddings)",
-        "Remembers the conversation, so follow-up questions just work",
-        "Empathetic “Dr. Insight” persona that acknowledges feelings before facts"
+        "Answers only from trusted medical sources, with the sources listed under every reply",
+        "Hybrid search (Pinecone vectors + BM25) with cross-encoder reranking of the top results",
+        "Safety layer that spots emergencies, crises and dosage requests before the AI answers",
+        "10 languages detected from the script, with voice input and spoken answers",
+        "Explains uploaded lab reports and photos, with values range-checked in code",
+        "Streaming chat with saved history, feedback, and dark and light themes",
+        "Free, containerised deployment with CI on every push"
       ],
       "metrics": [
         {
-          "value": "Top-5",
-          "label": "passages retrieved per answer"
+          "value": "13,828",
+          "label": "passages indexed from 4 trusted sources"
         },
         {
-          "value": "384-dim",
-          "label": "MiniLM embeddings"
+          "value": "100%",
+          "label": "Hit@5 retrieval, up from 56% (16-question eval)"
         },
         {
-          "value": "0",
-          "label": "answers without a source"
+          "value": "10",
+          "label": "languages, with voice in and out"
+        },
+        {
+          "value": "103",
+          "label": "automated tests, no network needed"
+        },
+        {
+          "value": "~240 MB",
+          "label": "RAM on free hosting (vs ~2 GB full)"
         }
       ],
       "github": "https://github.com/himanshugithub360/MediRAG",
@@ -277,7 +292,8 @@
         "accent": "#4cc9ff"
       },
       "motif": "tenants",
-      "year": "2025"
+      "year": "2025",
+      "live": "https://medirag-k33w.onrender.com"
     },
     {
       "id": "cfs-scheduler",
@@ -339,35 +355,46 @@
       "id": "socketchat",
       "title": "SocketChat",
       "genre": "Systems • C++ • Networking",
-      "logline": "A two-way chat built on raw TCP sockets in C++ — no frameworks, just Winsock and the network stack: bind, listen, accept, connect and a message loop.",
+      "logline": "A multi-user chat room built from raw TCP sockets in C++ — usernames, timestamps, heartbeat and auto-reconnect — with a browser client through a tiny WebSocket bridge. No libraries.",
       "stack": [
         "C++",
         "Winsock",
-        "TCP / IP"
+        "TCP / IP",
+        "Multithreading",
+        "WebSocket",
+        "Python"
       ],
       "build": [
-        "Built a client–server chat in C++ on Winsock 2 TCP sockets, covering the full socket lifecycle: socket, bind, listen, accept, connect, send/recv and close.",
-        "Implemented a turn-based message loop between server and client over port 8080, with a clean exit handshake.",
-        "Documented the protocol, MinGW and MSVC build steps, current limitations and a roadmap toward multi-client, full-duplex chat."
+        "Built a multi-client chat room in C++ on Winsock 2: a thread per client, a shared room guarded by one lock, usernames, timestamps and slash commands.",
+        "Designed a length-prefixed wire protocol (4-byte header, 64 KB cap) with control frames and a version handshake, so message boundaries survive TCP and other programs on the port can't pass as the server.",
+        "Added a PING/PONG heartbeat (every 5 s, dropped after 15 s of silence) and client auto-reconnect with backoff that rejoins under the same name; replaced blocking calls with short select() polls for reliable shutdown.",
+        "Wrote a standard-library Python bridge that serves a browser UI and speaks WebSocket to the room, with an origin check; the UI renders messages as text, never HTML.",
+        "Documented the protocol, MinGW and MSVC build steps, security limits and a roadmap."
       ],
       "features": [
-        "Raw TCP sockets with the Windows Sockets API — no networking libraries",
-        "Server listens on port 8080 on every interface; the client connects and chats",
-        "Turn-based two-way messaging from the console",
-        "Clean shutdown: the client sends “exit” and both sides release their sockets"
+        "Multi-user room: one thread per client, with every message relayed to everyone",
+        "Usernames (duplicates get a suffix), timestamps and /users, /help and /quit commands",
+        "Heartbeat every 5 s drops silent clients after 15 s; clients auto-reconnect with backoff and rejoin under the same name",
+        "Length-prefixed protocol (4-byte header, 64 KB limit), so message boundaries survive TCP",
+        "Browser client through a standard-library-only Python WebSocket bridge, with a live online list and light and dark themes",
+        "Exclusive port binding and a handshake, so another program can't hijack the chat; the bridge checks the origin"
       ],
       "metrics": [
         {
-          "value": "8080",
-          "label": "TCP port"
-        },
-        {
           "value": "0",
-          "label": "external libraries"
+          "label": "external dependencies"
         },
         {
-          "value": "~100",
-          "label": "lines of C++"
+          "value": "15 s",
+          "label": "to detect and drop a dead client"
+        },
+        {
+          "value": "64 KB",
+          "label": "max framed message"
+        },
+        {
+          "value": "~1,400",
+          "label": "lines of C++, Python and HTML"
         }
       ],
       "palette": {
@@ -382,36 +409,51 @@
     },
     {
       "id": "fitness-tracker",
-      "title": "AI Fitness Tracker",
-      "genre": "Full-Stack • Computer Vision",
-      "logline": "A full-stack fitness tracking web app with authentication, dashboards and AI-based food recognition.",
+      "title": "APEX",
+      "genre": "Full-Stack • AI • In development",
+      "logline": "An AI fitness tracker — snap a meal, get calories and macros. In development: the secure foundation (auth, database and AI gateway) is built, and the tracking features are next.",
       "stack": [
-        "React",
+        "Next.js 16",
+        "React 19",
         "TypeScript",
         "Tailwind CSS",
-        "Strapi",
-        "Gemini API"
+        "Supabase",
+        "PostgreSQL",
+        "Mistral AI",
+        "Gemini API",
+        "Vitest",
+        "GitHub Actions"
       ],
       "build": [
-        "Built a full-stack fitness tracking application with authentication and dashboards.",
-        "Implemented AI-based food recognition achieving ~75–85% accuracy on test inputs.",
-        "Integrated RESTful APIs with Strapi CMS, reducing data fetch time by ~30%.",
-        "Designed responsive UI and modular components for improved usability across devices."
+        "Set up a Next.js 16 and React 19 app in TypeScript with Supabase auth (email, magic link, Google) and a Postgres schema with row-level security on all five tables.",
+        "Built an AI gateway on the Vercel AI SDK that routes each task to a Mistral or Gemini model, falls back to the next model on failure, caps usage per user per day and logs every call.",
+        "Wrote a security script that checks users cannot read each other’s data, plus 36 Vitest unit tests.",
+        "Added GitHub Actions CI (format, lint, type-check, tests and build) and an APEX design system with a style guide.",
+        "Status: Stage 1 (foundation) is complete; tracking features such as meal-photo logging come next."
       ],
       "features": [
-        "Authentication & dashboards",
-        "AI food recognition (Gemini API)",
-        "Strapi CMS REST APIs",
-        "Responsive, modular UI"
+        "AI gateway: one server-side entry point for Mistral and Gemini, falling back to the next model on failure",
+        "Per-user daily AI limits, with every call logged",
+        "Six AI task routes ready, including meal-photo analysis",
+        "Supabase sign-in with email, magic link and Google",
+        "Row-level security on all five tables, checked by a security script"
       ],
       "metrics": [
         {
-          "value": "~75–85%",
-          "label": "food recognition accuracy"
+          "value": "5",
+          "label": "tables, all with row-level security"
         },
         {
-          "value": "~30%",
-          "label": "faster data fetch"
+          "value": "2",
+          "label": "AI providers with automatic fallback"
+        },
+        {
+          "value": "36",
+          "label": "Vitest unit tests"
+        },
+        {
+          "value": "20+",
+          "label": "security checks against Supabase"
         }
       ],
       "palette": {
@@ -420,7 +462,9 @@
         "to": "#0a0806",
         "accent": "#ffb547"
       },
-      "motif": "flow"
+      "motif": "flow",
+      "year": "2026",
+      "github": "https://github.com/himanshugithub360/AI-Fitness-Tracker"
     }
   ],
   "achievements": [
@@ -789,25 +833,25 @@
       "MediRAG"
     ],
     "Computer Vision": [
-      "AI Fitness Tracker (food recognition)"
+      "MediRAG (lab-report photos via a vision model)"
     ],
     "Gemini API": [
-      "AI Fitness Tracker"
+      "APEX"
     ],
     "LangChain": [
       "MediRAG"
     ],
     "React.js": [
-      "AI Fitness Tracker"
+      "APEX"
     ],
     "Flask": [
       "MediRAG"
     ],
     "REST APIs": [
-      "AI Fitness Tracker"
+      "MediRAG"
     ],
     "Tailwind CSS": [
-      "AI Fitness Tracker"
+      "APEX"
     ],
     "FAISS": [
       "ShadowTrace"
@@ -841,7 +885,7 @@
       "Sparks Foundation internship"
     ],
     "React": [
-      "AI Fitness Tracker"
+      "APEX"
     ],
     "Embedded Linux": [
       "ABB internship"
@@ -857,6 +901,10 @@
       "CFS Scheduler"
     ],
     "Mistral AI": [
+      "MediRAG",
+      "APEX"
+    ],
+    "Docker": [
       "MediRAG"
     ]
   },
@@ -1005,10 +1053,11 @@
           "tags": [
             "C++",
             "TCP",
-            "Sockets"
+            "Multithreading",
+            "WebSocket"
           ],
           "project": "socketchat",
-          "description": "SocketChat — a two-way chat over raw TCP sockets in C++, built from bind, listen and accept up."
+          "description": "SocketChat — a multi-user chat room on raw TCP sockets in C++, with heartbeat, auto-reconnect and a browser client."
         }
       ]
     },
@@ -1016,7 +1065,7 @@
       "number": 3,
       "title": "Building with AI",
       "period": "The AI Originals",
-      "synopsis": "Three AI Originals — a chat-intelligence platform, a medical RAG assistant and an AI fitness tracker.",
+      "synopsis": "Three AI Originals — a chat-intelligence platform, a medical RAG assistant and an AI fitness platform.",
       "episodes": [
         {
           "code": "S03 E01",
@@ -1050,16 +1099,17 @@
           },
           "tags": [
             "LangChain",
+            "Pinecone",
             "Mistral AI",
-            "Pinecone"
+            "Docker"
           ],
           "project": "medirag",
-          "description": "MediRAG — a medical QA system that answers only from trusted documents, with LangChain, Mistral AI and Pinecone."
+          "description": "MediRAG — a medical assistant that answers only from trusted sources, with hybrid search, reranking, a safety layer and 10 languages. Live on Render."
         },
         {
           "code": "S03 E03",
           "title": "The Builder",
-          "runtime": "Fitness Tracker",
+          "runtime": "APEX",
           "motif": "flow",
           "palette": {
             "from": "#1c1003",
@@ -1068,12 +1118,12 @@
             "accent": "#ffb547"
           },
           "tags": [
-            "React",
+            "Next.js",
             "TypeScript",
-            "Gemini API"
+            "Supabase"
           ],
           "project": "fitness-tracker",
-          "description": "AI Fitness Tracker — React + Strapi with Gemini-powered food recognition at ~75–85% accuracy."
+          "description": "APEX — a Next.js and Supabase AI fitness platform with a Mistral and Gemini gateway; the secure foundation is built and tracking features are next."
         }
       ]
     },
@@ -1223,7 +1273,7 @@
     {
       "label": "The GenAI build",
       "title": "MediRAG",
-      "detail": "LangChain • Mistral AI • Pinecone",
+      "detail": "Hit@5 56% → 100% • 10 languages • 103 tests",
       "palette": {
         "from": "#120822",
         "via": "#3d1a6e",
@@ -1266,8 +1316,8 @@
     },
     {
       "label": "Full-stack + AI",
-      "title": "Fitness Tracker",
-      "detail": "~75–85% food recognition accuracy",
+      "title": "APEX",
+      "detail": "Next.js • Supabase • AI gateway",
       "palette": {
         "from": "#1c1003",
         "via": "#6b3c06",
@@ -1343,10 +1393,10 @@
       "title": "Five Originals",
       "lines": [
         "ShadowTrace — 1M+ messages, 4-provider LLM fallback",
-        "MediRAG — grounded medical RAG with Mistral and Pinecone",
+        "MediRAG — safety-first medical RAG in 10 languages, live demo",
         "CFS Scheduler — Linux's fair scheduler in C++",
-        "SocketChat — a chat over raw TCP sockets",
-        "AI Fitness Tracker — ~75–85% food recognition"
+        "SocketChat — a multi-user chat room on raw TCP, with a browser client",
+        "APEX — AI fitness platform on Next.js and Supabase (in development)"
       ]
     },
     {
@@ -1503,7 +1553,7 @@
           "about",
           "story"
         ],
-        "intro": "M.Tech CSE student at NIT Silchar who builds LLM-powered products end to end — RAG pipelines, NLP and grounded GenAI. ShadowTrace analyses 1M+ messages through a 4-provider LLM router; MediRAG answers medical questions only from trusted sources.",
+        "intro": "M.Tech CSE student at NIT Silchar who builds LLM-powered products end to end — RAG pipelines, NLP and grounded GenAI. ShadowTrace analyses 1M+ messages through a 4-provider LLM router; MediRAG answers medical questions in 10 languages only from trusted sources, with a safety layer that handles emergencies first.",
         "projects": [
           "shadowtrace",
           "medirag",
@@ -1522,7 +1572,7 @@
         "picks": [
           "ShadowTrace",
           "MediRAG",
-          "Fitness Tracker",
+          "APEX",
           "Sparks Foundation",
           "GATE 2025",
           "NIT Silchar"
@@ -1544,7 +1594,7 @@
           "about",
           "story"
         ],
-        "intro": "Full-stack developer who ships complete products — React and TypeScript front ends, Flask and Node.js back ends, REST APIs and databases, with AI built in. From a React + Strapi fitness tracker to Flask and Streamlit apps around LLM pipelines.",
+        "intro": "Full-stack developer who ships complete products — React and TypeScript front ends, Flask and Node.js back ends, REST APIs and databases, with AI built in. From a Next.js and Supabase fitness platform to a Flask medical assistant with streaming chat, Docker and CI, and Streamlit apps around LLM pipelines.",
         "projects": [
           "fitness-tracker",
           "shadowtrace",
@@ -1561,7 +1611,7 @@
           "fundamentals"
         ],
         "picks": [
-          "Fitness Tracker",
+          "APEX",
           "ShadowTrace",
           "MediRAG",
           "GATE 2025",
@@ -1584,7 +1634,7 @@
           "about",
           "story"
         ],
-        "intro": "Embedded Linux intern at ABB, working on the ZEE600C substation automation platform — C/C++ and Python applications, boot, kernel and systemd log analysis. Built a Linux CFS scheduler simulation and a raw-socket chat in C++, and deployed a 5G core with Open5GS at C-DAC.",
+        "intro": "Embedded Linux intern at ABB, working on the ZEE600C substation automation platform — C/C++ and Python applications, boot, kernel and systemd log analysis. Built a Linux CFS scheduler simulation and a multi-user raw-socket chat room in C++ with a browser client, and deployed a 5G core with Open5GS at C-DAC.",
         "projects": [
           "cfs-scheduler",
           "socketchat",
